@@ -1,1 +1,0 @@
-{"version":3,"file":"LocateSearchByPosition.d.ts","sourceRoot":"","sources":["../../../packages/api-client/src/generated/models/LocateSearchByPosition.ts"],"names":[],"mappings":"AAIA,OAAO,KAAK,EAAE,UAAU,EAAE,MAAM,cAAc,CAAC;AAC/C,OAAO,KAAK,EAAE,aAAa,EAAE,MAAM,iBAAiB,CAAC;AACrD,MAAM,MAAM,sBAAsB,GAAG;IACjC,UAAU,CAAC,EAAE,UAAU,CAAC;IACxB,OAAO,CAAC,EAAE,aAAa,CAAC;CAC3B,CAAC"}

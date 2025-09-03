@@ -1,1 +1,0 @@
-{"version":3,"file":"TrafficApiService.d.ts","sourceRoot":"","sources":["../../../packages/api-client/src/generated/services/TrafficApiService.ts"],"names":[],"mappings":"AAIA,OAAO,KAAK,EAAE,cAAc,EAAE,MAAM,0BAA0B,CAAC;AAC/D,OAAO,KAAK,EAAE,iBAAiB,EAAE,MAAM,2BAA2B,CAAC;AAGnE,qBAAa,iBAAiB;IAC1B;;;;;OAKG;WACW,uBAAuB,CACjC,WAAW,CAAC,EAAE,cAAc,GAC7B,iBAAiB,CAAC,GAAG,CAAC;CAQ5B"}
