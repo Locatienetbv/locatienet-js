@@ -1,0 +1,26 @@
+// scss-docs-start import-stack
+// Configuration
+@import "bootstrap/scss/functions";
+@import "bootstrap/scss/variables";
+@import "bootstrap/scss/variables-dark";
+@import "bootstrap/scss/maps";
+@import "bootstrap/scss/mixins";
+@import "bootstrap/scss/utilities";
+@import "bootstrap/scss/helpers";
+// Layout & components
+@import "bootstrap/scss/root";
+
+// Helpers
+@import "bootstrap/scss/helpers";
+
+// Utilities
+@import "bootstrap/scss/utilities/api";
+
+ 
+//@import "bootstrap/scss/dropdown";
+@import "bootstrap/scss/list-group";
+@import "bootstrap/scss/forms";
+
+
+
+

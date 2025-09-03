@@ -1,0 +1,8 @@
+/* generated using openapi-typescript-codegen -- do not edit */
+/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+/**
+ * Defines values for ManeuverType.
+ */
+export type ManeuverType = 'START' | 'STARTLEFT' | 'STARTRIGHT' | 'ARRIVE' | 'ARRIVELEFT' | 'ARRIVERIGHT' | 'CONTINUE' | 'KEEPSTRAIGHT' | 'KEEPLEFT' | 'KEEPRIGHT' | 'TURNHALFLEFT' | 'TURNLEFT' | 'TURNSHARPLEFT' | 'TURNHALFRIGHT' | 'TURNRIGHT' | 'TURNSHARPRIGHT' | 'MAKEUTURN' | 'TAKEROUNDABOUTLEFT' | 'TAKEROUNDABOUTRIGHT' | 'TAKECOMBINEDTRANSPORT' | 'ENTER' | 'ENTERLEFT' | 'ENTERRIGHT' | 'EXIT' | 'EXITLEFT' | 'EXITRIGHT' | 'CHANGE' | 'CHANGELEFT' | 'CHANGERIGHT';

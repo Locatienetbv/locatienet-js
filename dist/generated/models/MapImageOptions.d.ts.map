@@ -1,0 +1,1 @@
+{"version":3,"file":"MapImageOptions.d.ts","sourceRoot":"","sources":["../../../packages/api-client/src/generated/models/MapImageOptions.ts"],"names":[],"mappings":"AAIA,OAAO,KAAK,EAAE,WAAW,EAAE,MAAM,eAAe,CAAC;AACjD,MAAM,MAAM,eAAe,GAAG;IAC1B;;OAEG;IACH,KAAK,CAAC,EAAE,MAAM,CAAC;IACf;;OAEG;IACH,MAAM,CAAC,EAAE,MAAM,CAAC;IAChB,WAAW,CAAC,EAAE,WAAW,CAAC;CAC7B,CAAC"}

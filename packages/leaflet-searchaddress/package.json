@@ -1,0 +1,24 @@
+{
+    "name": "@locatienet/leaflet-searchaddress",
+    "version": "1.0.0",
+    "description": "A plugin address searchbar for Leaflet",
+    "main": "dist/leaflet-searchaddress.js",
+    "module": "dist/leaflet-searchaddress.esm.js",
+    "type": "module",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "clean": "rimraf dist",
+        "build": "npm run clean && rollup -c",
+        "watch": "npm run clean && rollup -c --watch",
+        "dev": "concurrently \"npm run watch\" \"serve . -l 8085\""
+    },
+    "keywords": [ "leaflet", "geocode", "address", "plugin" ],
+    "devDependencies": {
+        "bootstrap": "^5.3.8"
+    },
+    "dependencies": {
+        "@locatienet/api-client": "^1.0.0"
+    }
+
+
+}

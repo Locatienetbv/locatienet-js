@@ -1,0 +1,23 @@
+/* generated using openapi-typescript-codegen -- do not edit */
+/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+import type { Coordinate } from './Coordinate';
+import type { Location } from './Location';
+export type CalculateRouteInfoResponse = {
+    /**
+     * The distance of the complete route.
+     */
+    distance?: number;
+    /**
+     * The travel time for the complete route.
+     */
+    travelTime?: number;
+    /**
+     * The total delay due to traffic incidents(traffic jams, construction sites etc.) on the route.
+     */
+    trafficDelay?: number | null;
+    waypoints?: Array<Location> | null;
+    polyline?: Array<Coordinate> | null;
+};
+

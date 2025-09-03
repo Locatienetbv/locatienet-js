@@ -1,0 +1,33 @@
+{
+    "name": "@locatienet/leaflet-tilelayer",
+    "version": "1.1.0",
+    "description": "A plugin tilelayer for Leaflet",
+	"main": "dist/leaflet-tilelayer.js",
+	"module": "dist/leaflet-tilelayer.esm.js",
+	"types": "dist/index.d.ts",
+	"type": "module",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "clean": "rimraf dist",
+        "build": "npm run clean && rollup -c",
+        "watch": "npm run clean && rollup -c --watch",
+        "dev": "concurrently \"npm run watch\" \"serve . -l 8084\""
+    },
+    "keywords": [
+        "leaflet",
+        "tilelayer",
+        "map",
+        "plugin"
+    ],
+    "author": "Remco Zut",
+    "license": "MIT",
+    "homepage": "https://github.com/locatienet/leaflet-locatienet-tilelayer#readme",
+    "peerDependencies": {
+        "@types/leaflet": "^1.9.20",
+        "leaflet": "^2.0.0-alpha.1"
+    },
+    "dependencies": {
+        "@locatienet/api-client": "^1.0.0"
+    }
+
+}
