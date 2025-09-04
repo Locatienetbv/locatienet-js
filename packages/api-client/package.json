@@ -1,13 +1,16 @@
 {
     "name": "@locatienet/api-client",
-    "version": "1.0.0",
+    "version": "1.0.3",
     "description": "Browser-ready UMD client for Locatienet API's",
+    "author": "Remco Zut",
+    "homepage": "https://github.com/Locatienetbv/locatienet-js/tree/master/packages/api-client#readme",
+    "license": "MIT",
+    "keywords": [ "api-client", "routing-engine", "distance-calculation", "geocoding" ],
     "main": "dist/api-client.js",
     "module": "dist/api-client.esm.js",
     "browser": "dist/api-client.min.js",
     "types": "dist/api-client.d.ts",
     "type": "module",
-    "keywords": [ "api", "client", "route", "distance", "geocode" ],
     "scripts": {
         "clean": "rimraf dist",
         "generate": "openapi --input https://services.locatienet.com/swagger/v1/swagger.json --output src/generated --client fetch --useUnionTypes --exportCore true --exportServices true --exportModels true",

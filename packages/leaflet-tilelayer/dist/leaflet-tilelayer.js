@@ -1,7 +1,7 @@
 /*!
- * Locatienet @locatienet/leaflet-tilelayer v1.1.0 (https://github.com/locatienet/leaflet-locatienet-tilelayer#readme)
+ * Locatienet @locatienet/leaflet-tilelayer v1.0.2 (https://github.com/locatienetbv/locatienet-js/leaflet-tilelayer#readme)
  * Copyright 2021-2025 Remco Zut
- * Licensed under MIT (https://github.com/locatienet/blob/main/LICENSE)
+ * Licensed under MIT (https://github.com/locatienetbv/locatienet-js/LICENSE)
  */
 (function (global, factory) {
     typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('leaflet')) :

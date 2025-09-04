@@ -1,8 +1,7 @@
 import apikey from './apikey';
-import { OpenAPI, TimeDistanceService, LocateSearchByText, Country, LocateOptions } from './generated';
+import { OpenAPI, TimeDistanceService, LocateSearchByText, LocateSearchByPosition, Country, LocateOptions, MapRouteService, Coordinate, Location, RouteRequest} from './generated';
 
 // Configure OpenAPI defaults
-OpenAPI.BASE = 'https://services.locatienet.com';
 OpenAPI.HEADERS = {
     'X-API-KEY': apikey
 };
@@ -26,7 +25,40 @@ export const Api = {
                 })
             }
         );
-    }
+    },
+
+    locateByPosition: async (coordinate : Coordinate, options?: any) => {
+        const request : LocateSearchByPosition = {
+            coordinate: coordinate,
+            options: options
+        }
+        return await MapRouteService.postRsV1LocateSearchByPosition(request).then(
+            (response) => {
+                return response.map(x => { 
+                    return { type: "Feature", geometry: { type: "Point", coordinates: [x.coordinate?.x, x.coordinate?.y ]}, properties: { description : x.description }}
+                })
+            }
+        );
+    },
+
+    calculateRouteInfo: async (waypoints?: Location[], options?: any) => {
+        const request : RouteRequest = {
+            locations : waypoints,
+            options : options
+        }
+        return await TimeDistanceService.postRsV1RouteCalculateRouteInfo(request);
+    },   
+    
+    calculateRoute: async (waypoints?: Location[], options?: any) => {
+        const request : RouteRequest = {
+            locations : waypoints,
+            options : options
+        }
+        return await MapRouteService.postRsV1RouteCalculateRouteDescription(request);
+    }  
+
+    
+
 };
 
 // Attach to global for UMD

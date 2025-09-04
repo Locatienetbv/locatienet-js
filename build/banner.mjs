@@ -15,6 +15,6 @@ export default function banner(projectDir, pluginFilename) {
 	return `/*!
  * Locatienet ${pkg.name}${pluginFilename ? ` ${pluginFilename}` : ''} v${pkg.version} (${pkg.homepage})
  * Copyright 2021-${year} ${pkg.author}
- * Licensed under ${pkg.license} (https://github.com/locatienet/blob/main/LICENSE)
+ * Licensed under ${pkg.license} (https://github.com/locatienetbv/locatienet-js/LICENSE)
  */`;
 }

@@ -1,7 +1,7 @@
 /*!
- * Locatienet @locatienet/leaflet-searchaddress v1.0.0 (undefined)
- * Copyright 2021-2025 undefined
- * Licensed under undefined (https://github.com/locatienet/blob/main/LICENSE)
+ * Locatienet @locatienet/leaflet-searchaddress v1.0.2 (https://github.com/Locatienetbv/locatienet-js/tree/master/packages/leaflet-searchaddress#readme)
+ * Copyright 2021-2025 Remco Zut
+ * Licensed under MIT (https://github.com/locatienetbv/locatienet-js/LICENSE)
  */
 (function (global, factory) {
     typeof exports === 'object' && typeof module !== 'undefined' ? factory(require('leaflet')) :
@@ -227,8 +227,8 @@
     // UMD globals (only if Leaflet is loaded)
     if (typeof window !== "undefined" && window.L) {
         const L = window.L;
-        L.AddressSearch = L.AddressSearch || {};
-        L.AddressSearch.Control = SearchAddressControl;
+        L.SearchAddress = L.SearchAddress || {};
+        L.SearchAddress.Control = SearchAddressControl;
     }
 
 }));

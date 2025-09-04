@@ -7,7 +7,7 @@ Locatienet API Client
 To install the package, run:
 
 ```sh
-npm install locatienet-api-client
+npm install @locatienet/api-client
 ```
 
 ## 📖 Usage
