@@ -1,11 +1,15 @@
 {
     "name": "@locatienet/leaflet-searchaddress",
-    "version": "1.0.3",
+    "version": "1.0.6",
     "description": "A plugin address searchbar for Leaflet",
     "author": "Remco Zut",
     "license": "MIT",
     "homepage": "https://github.com/Locatienetbv/locatienet-js/tree/master/packages/leaflet-searchaddress#readme",
-    "keywords": [ "leaflet", "geocoding", "address" ],
+    "keywords": [
+        "leaflet",
+        "geocoding",
+        "address"
+    ],
     "main": "dist/leaflet-searchaddress.js",
     "module": "dist/leaflet-searchaddress.esm.js",
     "browser": "dist/leaflet-searchaddress.min.js",
@@ -22,8 +26,6 @@
         "bootstrap": "^5.3.8"
     },
     "dependencies": {
-        "@locatienet/api-client": "^1.0.0"
+        "@locatienet/api-client": "^1.0.6"
     }
-
-
 }
