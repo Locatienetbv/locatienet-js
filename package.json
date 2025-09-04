@@ -13,7 +13,8 @@
     "build:leaflet-tilelayer": "npm --workspace=@locatienet/leaflet-tilelayer run build",
     "build:api-client": "npm --workspace=@locatienet/api-client run build",
     "build:all": "npm run build:api-client && npm run build:leaflet-searchaddress && npm run build:leaflet-tilelayer",
-    "publish": "npm publish --access public --workspaces"
+    "_publish": "npm publish --access public --workspaces",
+    "publish": "npx lerna publish"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^28.0.6",
