@@ -27,5 +27,6 @@
     "devDependencies": {
         "dts-bundle-generator": "^9.5.1",
         "openapi-typescript-codegen": "^0.29.0"
-    }
+    },
+    "gitHead": "8b0866f5481901751327b52ccce56da35bfb8cc3"
 }

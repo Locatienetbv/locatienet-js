@@ -29,5 +29,6 @@
     },
     "dependencies": {
         "@locatienet/api-client": "^1.0.6"
-    }
+    },
+    "gitHead": "8b0866f5481901751327b52ccce56da35bfb8cc3"
 }
