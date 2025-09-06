@@ -1,5 +1,5 @@
 /*!
- * Locatienet @locatienet/leaflet-searchaddress v1.0.20 (https://github.com/Locatienetbv/locatienet-js/tree/master/packages/leaflet-searchaddress#readme)
+ * Locatienet @locatienet/leaflet-searchaddress v1.0.21 (https://github.com/Locatienetbv/locatienet-js/tree/master/packages/leaflet-searchaddress#readme)
  * Copyright 2021-2025 Remco Zut
  * Licensed under MIT (https://github.com/locatienetbv/locatienet-js/LICENSE)
  */
@@ -31,7 +31,7 @@
     var apiClient_min$1 = {exports: {}};
 
     /*!
-     * Locatienet @locatienet/api-client v1.0.20 (https://github.com/Locatienetbv/locatienet-js/tree/master/packages/api-client#readme)
+     * Locatienet @locatienet/api-client v1.0.21 (https://github.com/Locatienetbv/locatienet-js/tree/master/packages/api-client#readme)
      * Copyright 2021-2025 Remco Zut
      * Licensed under MIT (https://github.com/locatienetbv/locatienet-js/LICENSE)
      */
