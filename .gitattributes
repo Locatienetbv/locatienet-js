@@ -1,0 +1,3 @@
+# Use LF for all JS files
+*.js text eol=lf
+*.ts text eol=lf
