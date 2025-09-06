@@ -25,5 +25,8 @@
         "@types/leaflet": "^1.9.20",
         "leaflet": "^2.0.0-alpha.1"
     },
+    "publishConfig": {
+        "access": "public"
+    },
     "gitHead": "9db119b703faaa196ca384d12eb396b987ece17c"
 }
