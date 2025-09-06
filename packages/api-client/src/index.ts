@@ -12,6 +12,14 @@ OpenAPI.HEADERS = {
 const Api = {
     apikey : apikey,  // API key
 
+/**
+ * Search for locations using a free-form text input. 
+ * 
+ * @param {string} query input
+ * @param {string} [country]
+ * @param {LocateOptions} [options]
+ * @returns {*}  {Promise<Array<LocateFeatureResult>>}
+ */
     locateByText: locateByText,
 
     locateByAddress: locateByAddress,

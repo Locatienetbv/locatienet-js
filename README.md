@@ -1,28 +1,13 @@
 # Locatienet-js
 
-## 🚀 Installation.
+## 🚀 Welcome
 
-To install the package, run:
-
-```sh
-npm install @locatienet/api-client
-```
+This monorepo contains a Locatienet API Client and several plugins for leaflet
 
 ## 📖 Usage
 
-
-
-
-```ts
-
-```
-
-## ⚙ Available options.
-
-- 
+Documentation <https://locatienetbv.github.io/locatienet-js-docs/>
 
 ## 📜 License
 
 Distributed under **MIT** license.
-
-

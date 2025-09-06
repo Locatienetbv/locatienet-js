@@ -13,7 +13,6 @@
     "build:leaflet-tilelayer": "npm --workspace=@locatienet/leaflet-tilelayer run build",
     "build:api-client": "npm --workspace=@locatienet/api-client run build",
     "build:all": "npm run build:api-client && npm run build:leaflet-searchaddress && npm run build:leaflet-tilelayer",
-    "_publish": "npm publish --access public --workspaces",
     "publish": "lerna version patch && lerna publish",
     "docs": "typedoc --commentStyle all --plugin typedoc-github-theme"
   },
