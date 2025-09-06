@@ -22,11 +22,16 @@
         "build:types": "dts-bundle-generator --export-referenced-types=false --umd-module-name=LocatienetApiClient -o ./dist/api-client.d.ts ./src/index.ts",
         "build": "npm run clean && npm run build:types && rollup -c",
         "build:all": "npm run clean && npm run generate && npm run build:types && rollup -c",
-        "watch": "npm run clean && rollup -c -w"
+        "watch": "npm run clean && rollup -c -w",
+        "docs": ""
+
+    },
+    "dependencies": {
+        "@types/geojson": "^7946.0.16"
     },
     "devDependencies": {
         "dts-bundle-generator": "^9.5.1",
         "openapi-typescript-codegen": "^0.29.0"
     },
-    "gitHead": "8b0866f5481901751327b52ccce56da35bfb8cc3"
+    "gitHead": "603c25287647f8b4b5ac02149bb1ec5caac2e6f0"
 }

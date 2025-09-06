@@ -1,0 +1,16 @@
+{
+  "$schema": "https://typedoc.org/schema.json",
+  "plugin": ["typedoc-plugin-markdown"],
+  "entryPointStrategy": "packages",
+  "entryPoints": [
+    "packages/*"
+  ],
+    "packageOptions": {
+        "entryPoints": ["src/index.ts"]
+    },
+  "out": "docs",
+  "readme": "none",
+  "excludePrivate": false,
+  "excludeInternal": true,
+  "categorizeByGroup": false
+}

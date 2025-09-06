@@ -8,18 +8,14 @@
 		}
 	],
 	"settings": {
-		"liveServer.root": "./packages/leaflet-searchaddress",
-		"liveServer.settings.port": 4444
+		"docthis.authorName": "Remco Zut"
 		
 	},
 	"launch": {
 		"configurations": [
 			{
-				"type": "cmake",
 				"request": "launch",
 				"name": "Debug portfile(s)",
-				"cmakeDebugType": "external",
-				"pipeName": "\\\\.\\pipe\\vcpkg_ext_portfile_dbg",
 				"preLaunchTask": "Debug vcpkg commands"
 			}
 		]

@@ -1,15 +1,13 @@
-import { Country, LocateOptions } from './generated';
-export declare const Api: {
+import { locateByText, locateByAddress, countries, locateByPosition, calculateRouteInfo } from "./functions";
+declare const Api: {
     apikey: any;
-    countries: () => Promise<Country[]>;
-    locateByText: (query: string, country?: string, options?: LocateOptions) => Promise<{
-        type: string;
-        geometry: {
-            type: string;
-            coordinates: (number | undefined)[];
-        };
-        properties: {
-            description: string | null | undefined;
-        };
-    }[]>;
+    locateByText: typeof locateByText;
+    locateByAddress: typeof locateByAddress;
+    locateByPosition: typeof locateByPosition;
+    calculateRouteInfo: typeof calculateRouteInfo;
+    calculateRoute: typeof calculateRouteInfo;
+    countries: typeof countries;
 };
+export { Api };
+import { Address, Coordinate, LocateOptions, Location, RouteOptions } from "./generated";
+export type { Address, Coordinate, Location, LocateOptions, RouteOptions };

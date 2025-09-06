@@ -1,24 +1,13 @@
 /*!
- * Locatienet @locatienet/api-client v1.0.0 (undefined)
- * Copyright 2021-2025 undefined
- * Licensed under undefined (https://github.com/locatienet/blob/main/LICENSE)
+ * Locatienet @locatienet/api-client v1.0.7 (https://github.com/Locatienetbv/locatienet-js/tree/master/packages/api-client#readme)
+ * Copyright 2021-2025 Remco Zut
+ * Licensed under MIT (https://github.com/locatienetbv/locatienet-js/LICENSE)
  */
 (function (global, factory) {
     typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
     typeof define === 'function' && define.amd ? define(['exports'], factory) :
     (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory(global.LocatienetApiClient = {}));
 })(this, (function (exports) { 'use strict';
-
-    function getApiKeyFromScript() {
-        const scripts = document.getElementsByTagName('script');
-        const script = scripts[scripts.length - 1];
-        if (script) {
-            const params = new URLSearchParams(script.src.split('?')[1]);
-            return params.get('apikey') || '';
-        }
-        return '';
-    }
-    const apikey = window.LN_API_KEY || getApiKeyFromScript() || '';
 
     class ApiError extends Error {
         constructor(request, response, message) {
@@ -451,6 +440,115 @@
         });
     };
 
+    class MapRouteService {
+        /**
+         * Search for locations using a free-form text input.
+         * @param requestBody
+         * @returns Location OK
+         * @throws ApiError
+         */
+        static postRsV1LocateSearchByText(requestBody) {
+            return request(OpenAPI, {
+                method: 'POST',
+                url: '/rs/v1/Locate/searchByText',
+                body: requestBody,
+                mediaType: 'application/json',
+            });
+        }
+        /**
+         * Search for locations using structured address input.
+         * @param requestBody
+         * @returns Location OK
+         * @throws ApiError
+         */
+        static postRsV1LocateSearchByAddress(requestBody) {
+            return request(OpenAPI, {
+                method: 'POST',
+                url: '/rs/v1/Locate/searchByAddress',
+                body: requestBody,
+                mediaType: 'application/json',
+            });
+        }
+        /**
+         * Search for addresses using structured coordinate input.
+         * @param requestBody
+         * @returns Location OK
+         * @throws ApiError
+         */
+        static postRsV1LocateSearchByPosition(requestBody) {
+            return request(OpenAPI, {
+                method: 'POST',
+                url: '/rs/v1/Locate/searchByPosition',
+                body: requestBody,
+                mediaType: 'application/json',
+            });
+        }
+        /**
+         * Calculates and returns basic route information, descriptions and polyline.
+         * @param requestBody
+         * @returns CalculateRouteDescriptionResponse OK
+         * @throws ApiError
+         */
+        static postRsV1RouteCalculateRouteDescription(requestBody) {
+            return request(OpenAPI, {
+                method: 'POST',
+                url: '/rs/v1/Route/calculateRouteDescription',
+                body: requestBody,
+                mediaType: 'application/json',
+            });
+        }
+        /**
+         * The required map section is described by its tile key. Use https://[tileserver|tile[0|1|2|3]].locatienet.com/{z}/{x}/{y}.png?apikey={your apikey}
+         * @returns string OK
+         * @throws ApiError
+         */
+        static getRsV1MapRenderMapTile() {
+            return request(OpenAPI, {
+                method: 'GET',
+                url: '/rs/v1/Map/renderMapTile',
+            });
+        }
+        /**
+         * The required map is described by its bounds..
+         * @param requestBody
+         * @returns MapResponse OK
+         * @throws ApiError
+         */
+        static postRsV1MapRenderMapByBounds(requestBody) {
+            return request(OpenAPI, {
+                method: 'POST',
+                url: '/rs/v1/Map/renderMapByBounds',
+                body: requestBody,
+                mediaType: 'application/json',
+            });
+        }
+        /**
+         * The required map is described by its center coordinate and its zooming.
+         * @param requestBody
+         * @returns MapResponse OK
+         * @throws ApiError
+         */
+        static postRsV1MapRenderMapByCenter(requestBody) {
+            return request(OpenAPI, {
+                method: 'POST',
+                url: '/rs/v1/Map/renderMapByCenter',
+                body: requestBody,
+                mediaType: 'application/json',
+            });
+        }
+        /**
+         * A list of available countries.
+         * @returns Country OK
+         * @throws ApiError
+         */
+        static getRsV1CountryList() {
+            return request(OpenAPI, {
+                method: 'GET',
+                url: '/rs/v1/Country/list',
+            });
+        }
+    }
+
     class TimeDistanceService {
         /**
          * Search for locations using a free-form text input.
@@ -507,34 +605,144 @@
         }
     }
 
+    /**
+     * @description Search for locations using a free-form text input.
+     * @author Remco Zut
+     * @param {string} query input
+     * @param {string} [country]
+     * @param {LocateOptions} [options]
+     * @returns {*}  {Promise<Array<LocateFeatureResult>>}
+     */
+    async function locateByText(query, country, options) {
+        const request = {
+            text: query,
+            country,
+            options: options
+        };
+        const response = await TimeDistanceService.postRsV1LocateSearchByText(request);
+        return response
+            .filter(x => x.coordinate?.x != null && x.coordinate?.y != null)
+            .map((x) => ({
+            type: "Feature",
+            geometry: {
+                type: "Point",
+                coordinates: [x.coordinate?.x || 0, x.coordinate?.y || 0], // make sure order = [lon, lat]
+            },
+            properties: x
+        }));
+    }
+    /**
+     * @description Search for locations using structured address input.
+     * @author Remco Zut
+     * @export
+     * @param {Address} address
+     * @param {LocateOptions} [options]
+     * @returns {*}  {Promise<Array<LocateFeatureResult>>}
+     */
+    async function locateByAddress(address, options) {
+        const request = {
+            address: address,
+            options: options
+        };
+        const response = await TimeDistanceService.postRsV1LocateSearchByAddress(request);
+        return response
+            .filter(x => x.coordinate?.x != null && x.coordinate?.y != null)
+            .map((x) => ({
+            type: "Feature",
+            geometry: {
+                type: "Point",
+                coordinates: [x.coordinate?.x || 0, x.coordinate?.y || 0], // make sure order = [lon, lat]
+            },
+            properties: x,
+        }));
+    }
+    /**
+     * @description Search for addresses using structured coordinate input.
+     * @author Remco Zut
+     * @export
+     * @param {(Coordinate | Position)} position
+     * @param {LocateOptions} [options]
+     * @returns {*}  {Promise<Array<LocateFeatureResult>>}
+     */
+    async function locateByPosition(position, options) {
+        const coordinate = Array.isArray(position) ? { x: position[0], y: position[1] } : position;
+        const request = {
+            coordinate: coordinate,
+            options: options
+        };
+        const response = await MapRouteService.postRsV1LocateSearchByPosition(request);
+        return response
+            .filter(x => x.coordinate?.x != null && x.coordinate?.y != null)
+            .map((x) => ({
+            type: "Feature",
+            geometry: {
+                type: "Point",
+                coordinates: [x.coordinate?.x || 0, x.coordinate?.y || 0], // make sure order = [lon, lat]
+            },
+            properties: x,
+        }));
+    }
+    /**
+     * @description Calculates and returns basic route information and polyline as GeoJSON Feature.
+     * @author Remco Zut
+     * @export
+     * @param {Location[]} [locations]
+     * @param {RouteOptions} [options]
+     * @returns {*}  {Promise<RouteInfoFeatureResult>}
+     */
+    async function calculateRouteInfo(locations, options) {
+        const request = {
+            locations: locations,
+            options: { ...options, ...{ includePolyline: true } }
+        };
+        const response = await TimeDistanceService.postRsV1RouteCalculateRouteInfo(request);
+        const coords = (response.polyline ?? []).filter(p => p.x != null && p.y != null).map(p => [p.x, p.y]);
+        return { type: "Feature",
+            geometry: { type: "LineString", coordinates: coords },
+            properties: {
+                distance: response.distance,
+                travelTime: response.travelTime
+            }
+        };
+    }
+    /**
+     * @description Fetch all EU country information, name in different languages and their iso codes
+     * @author Remco Zut
+     * @export
+     * @returns {*}  {Promise<Country[]>}
+     */
+    async function countries() {
+        return await TimeDistanceService.getRsV1CountryList();
+    }
+
+    function getApiKeyFromScript() {
+        const scripts = document.getElementsByTagName('script');
+        const script = scripts[scripts.length - 1];
+        if (script) {
+            const params = new URLSearchParams(script.src.split('?')[1]);
+            return params.get('apikey') || '';
+        }
+        return '';
+    }
+    const apikey = window.LN_API_KEY || getApiKeyFromScript() || '';
+
     // Configure OpenAPI defaults
-    OpenAPI.BASE = 'https://services.locatienet.com';
     OpenAPI.HEADERS = {
         'X-API-KEY': apikey
     };
-    // API wrapper
     const Api = {
-        apikey: apikey, // store API key in the wrapper
-        countries: async () => {
-            return await TimeDistanceService.getRsV1CountryList();
-        },
-        locateByText: async (query, country, options) => {
-            const request = {
-                text: query,
-                country,
-                options: options
-            };
-            return await TimeDistanceService.postRsV1LocateSearchByText(request).then((response) => {
-                return response.map(x => {
-                    return { type: "Feature", geometry: { type: "Point", coordinates: [x.coordinate?.x, x.coordinate?.y] }, properties: { description: x.description } };
-                });
-            });
-        }
+        apikey: apikey, // API key
+        locateByText: locateByText,
+        locateByAddress: locateByAddress,
+        locateByPosition: locateByPosition,
+        calculateRouteInfo: calculateRouteInfo,
+        calculateRoute: calculateRouteInfo,
+        countries: countries
     };
     // Attach to global for UMD
     if (typeof window !== 'undefined') {
         window.LN = window.LN || {};
-        window.LN.api = Api;
+        window.LN.Api = Api;
     }
 
     exports.Api = Api;

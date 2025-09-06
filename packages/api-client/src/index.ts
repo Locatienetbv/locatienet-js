@@ -1,68 +1,41 @@
+import { OpenAPI } from "./generated";
+import { locateByText, locateByAddress, countries, locateByPosition, calculateRouteInfo  } from "./functions";
 import apikey from './apikey';
-import { OpenAPI, TimeDistanceService, LocateSearchByText, LocateSearchByPosition, Country, LocateOptions, MapRouteService, Coordinate, Location, RouteRequest} from './generated';
 
 // Configure OpenAPI defaults
 OpenAPI.HEADERS = {
     'X-API-KEY': apikey
 };
 
-// API wrapper
-export const Api = {
-    apikey : apikey,  // store API key in the wrapper
-    countries: async (): Promise<Country[]> => {
-        return await TimeDistanceService.getRsV1CountryList();
-    },
-    locateByText: async (query: string, country?: string, options?: LocateOptions) => {
-        const request: LocateSearchByText = {
-            text: query,
-            country,
-            options: options
-        };
-        return await TimeDistanceService.postRsV1LocateSearchByText(request).then(
-            (response) => {
-                return response.map(x => { 
-                    return { type: "Feature", geometry: { type: "Point", coordinates: [x.coordinate?.x, x.coordinate?.y ]}, properties: { description : x.description }}
-                })
-            }
-        );
-    },
 
-    locateByPosition: async (coordinate : Coordinate, options?: any) => {
-        const request : LocateSearchByPosition = {
-            coordinate: coordinate,
-            options: options
-        }
-        return await MapRouteService.postRsV1LocateSearchByPosition(request).then(
-            (response) => {
-                return response.map(x => { 
-                    return { type: "Feature", geometry: { type: "Point", coordinates: [x.coordinate?.x, x.coordinate?.y ]}, properties: { description : x.description }}
-                })
-            }
-        );
-    },
+/** @type {*} */
+const Api = {
+    apikey : apikey,  // API key
 
-    calculateRouteInfo: async (waypoints?: Location[], options?: any) => {
-        const request : RouteRequest = {
-            locations : waypoints,
-            options : options
-        }
-        return await TimeDistanceService.postRsV1RouteCalculateRouteInfo(request);
-    },   
-    
-    calculateRoute: async (waypoints?: Location[], options?: any) => {
-        const request : RouteRequest = {
-            locations : waypoints,
-            options : options
-        }
-        return await MapRouteService.postRsV1RouteCalculateRouteDescription(request);
-    }  
+    locateByText: locateByText,
+
+    locateByAddress: locateByAddress,
+
+
+    locateByPosition: locateByPosition,
 
     
+    calculateRouteInfo: calculateRouteInfo,
+    
+    calculateRoute: calculateRouteInfo,
+
+    countries: countries
+
 
 };
 
 // Attach to global for UMD
 if (typeof window !== 'undefined') {
     (window as any).LN = (window as any).LN || {};
-    (window as any).LN.api = Api;
+    (window as any).LN.Api = Api;
 }
+
+export { Api };
+
+import { Address, Coordinate, LocateOptions, Location, RouteOptions} from "./generated";
+export type { Address, Coordinate, Location, LocateOptions, RouteOptions};
