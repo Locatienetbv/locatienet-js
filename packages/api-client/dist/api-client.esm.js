@@ -1,5 +1,5 @@
 /*!
- * Locatienet @locatienet/api-client v1.0.7 (https://github.com/Locatienetbv/locatienet-js/tree/master/packages/api-client#readme)
+ * Locatienet @locatienet/api-client v1.0.10 (https://github.com/Locatienetbv/locatienet-js/tree/master/packages/api-client#readme)
  * Copyright 2021-2025 Remco Zut
  * Licensed under MIT (https://github.com/locatienetbv/locatienet-js/LICENSE)
  */
@@ -606,8 +606,8 @@
     }
 
     /**
-     * @description Search for locations using a free-form text input.
-     * @author Remco Zut
+     * Search for locations using a free-form text input.
+     *
      * @param {string} query input
      * @param {string} [country]
      * @param {LocateOptions} [options]
@@ -632,9 +632,8 @@
         }));
     }
     /**
-     * @description Search for locations using structured address input.
-     * @author Remco Zut
-     * @export
+     * Search for locations using structured address input.
+     *
      * @param {Address} address
      * @param {LocateOptions} [options]
      * @returns {*}  {Promise<Array<LocateFeatureResult>>}
@@ -657,9 +656,8 @@
         }));
     }
     /**
-     * @description Search for addresses using structured coordinate input.
-     * @author Remco Zut
-     * @export
+     * Search for addresses using structured coordinate input.
+     *
      * @param {(Coordinate | Position)} position
      * @param {LocateOptions} [options]
      * @returns {*}  {Promise<Array<LocateFeatureResult>>}
@@ -683,9 +681,8 @@
         }));
     }
     /**
-     * @description Calculates and returns basic route information and polyline as GeoJSON Feature.
-     * @author Remco Zut
-     * @export
+     * Calculates and returns basic route information and polyline as GeoJSON Feature.
+     *
      * @param {Location[]} [locations]
      * @param {RouteOptions} [options]
      * @returns {*}  {Promise<RouteInfoFeatureResult>}
@@ -706,9 +703,8 @@
         };
     }
     /**
-     * @description Fetch all EU country information, name in different languages and their iso codes
-     * @author Remco Zut
-     * @export
+     * Fetch all EU country information, name in different languages and their iso codes
+     *
      * @returns {*}  {Promise<Country[]>}
      */
     async function countries() {
@@ -730,8 +726,17 @@
     OpenAPI.HEADERS = {
         'X-API-KEY': apikey
     };
+    /** @type {*} */
     const Api = {
         apikey: apikey, // API key
+        /**
+         * Search for locations using a free-form text input.
+         *
+         * @param {string} query input
+         * @param {string} [country]
+         * @param {LocateOptions} [options]
+         * @returns {*}  {Promise<Array<LocateFeatureResult>>}
+         */
         locateByText: locateByText,
         locateByAddress: locateByAddress,
         locateByPosition: locateByPosition,

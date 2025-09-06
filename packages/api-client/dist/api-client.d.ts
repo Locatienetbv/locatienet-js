@@ -187,8 +187,17 @@ interface RouteInfoFeatureResult extends Feature<LineString> {
 }
 declare function calculateRouteInfo(locations?: Location$1[], options?: RouteOptions): Promise<RouteInfoFeatureResult>;
 declare function countries(): Promise<Country[]>;
+/** @type {*} */
 export declare const Api: {
 	apikey: any;
+	/**
+	 * Search for locations using a free-form text input.
+	 *
+	 * @param {string} query input
+	 * @param {string} [country]
+	 * @param {LocateOptions} [options]
+	 * @returns {*}  {Promise<Array<LocateFeatureResult>>}
+	 */
 	locateByText: typeof locateByText;
 	locateByAddress: typeof locateByAddress;
 	locateByPosition: typeof locateByPosition;
