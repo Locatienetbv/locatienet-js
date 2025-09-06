@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.21](https://github.com/locatienetbv/Locatienet-js/compare/v1.0.20...v1.0.21) (2025-09-06)
+
+**Note:** Version bump only for package @locatienet/leaflet-routing
+
+
+
+
+
 ## [1.0.20](https://github.com/locatienetbv/Locatienet-js/compare/v1.0.19...v1.0.20) (2025-09-06)
 
 **Note:** Version bump only for package @locatienet/leaflet-routing
