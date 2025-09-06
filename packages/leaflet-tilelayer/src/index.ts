@@ -69,10 +69,10 @@ export class LocatienetTileLayer extends L.TileLayer {
 
 
 // Attach globally for UMD/browser usage
-if (typeof window !== "undefined" && window.L) {
-    (window as any).L = (window as any).L || {};
-    (window as any).L.LocatienetTileLayer = (window as any).L.LocatienetTileLayer || {};
-    (window as any).L.locatienetTileLayer = function(): L.TileLayer {
+if (typeof window !== "undefined" && (window as any).L) {
+    const L = (window as any).L;
+    L.LocatienetTileLayer = L.LocatienetTileLayer || {};
+    L.locatienetTileLayer = function(): L.TileLayer {
         return new LocatienetTileLayer();
     }
 }
