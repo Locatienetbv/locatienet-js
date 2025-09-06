@@ -8,7 +8,7 @@
 # Node
 obj/
 node_modules/
-npm-debug.log
+.log
 
 # IDEs and editors
 .project
