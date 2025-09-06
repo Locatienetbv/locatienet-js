@@ -1,0 +1,64 @@
+0 silly argv {
+0 silly argv   _: [ 'version' ],
+0 silly argv   lernaVersion: '8.2.3',
+0 silly argv   '$0': 'node_modules\\lerna\\dist\\cli.js',
+0 silly argv   bump: 'patch'
+0 silly argv }
+1 notice cli v8.2.3
+2 verbose packageConfigs Resolving packages based on package.json "workspaces" configuration.
+3 verbose rootPath C:\websites\Locatienet-js
+4 info current version 1.0.8
+5 silly isAnythingCommitted
+6 verbose isAnythingCommitted 1
+7 silly getCurrentBranch
+8 verbose currentBranch master
+9 silly remoteBranchExists
+10 silly isBehindUpstream
+11 silly isBehindUpstream master is behind origin/master by 0 commit(s) and ahead by 0
+12 silly hasTags
+13 verbose hasTags true
+14 silly git-describe.sync "v1.0.8-4-g3d1fc76" => {"lastTagName":"v1.0.8","lastVersion":"v1.0.8","refCount":"4","sha":"3d1fc76","isDirty":false}
+15 info Looking for changed packages since v1.0.8
+16 silly checking diff packages/api-client
+17 silly found diff in packages/api-client/src/index.ts
+18 verbose filtered diff [ 'packages/api-client/src/index.ts' ]
+19 silly checking diff packages/leaflet-routing
+20 silly no diff found in @locatienet/leaflet-routing
+21 silly checking diff packages/leaflet-searchaddress
+22 silly found diff in packages/leaflet-searchaddress/index.html
+22 silly found diff in packages/leaflet-searchaddress/src/index.ts
+23 verbose filtered diff [
+23 verbose filtered diff   'packages/leaflet-searchaddress/index.html',
+23 verbose filtered diff   'packages/leaflet-searchaddress/src/index.ts'
+23 verbose filtered diff ]
+24 silly checking diff packages/leaflet-tilelayer
+25 silly found diff in packages/leaflet-tilelayer/src/index.ts
+26 verbose filtered diff [ 'packages/leaflet-tilelayer/src/index.ts' ]
+27 verbose updated @locatienet/api-client
+28 verbose updated @locatienet/leaflet-searchaddress
+29 verbose updated @locatienet/leaflet-tilelayer
+30 verbose git-describe undefined => "v1.0.8-4-g3d1fc76"
+31 silly git-describe parsed => {"lastTagName":"v1.0.8","lastVersion":"v1.0.8","refCount":"4","sha":"3d1fc76","isDirty":false}
+32 info execute Skipping releases
+33 silly lifecycle No script for "preversion" in "locatienet-js", continuing
+34 silly lifecycle No script for "preversion" in "@locatienet/api-client", continuing
+35 verbose version @locatienet/api-client has no lockfile. Skipping lockfile update.
+36 silly lifecycle No script for "version" in "@locatienet/api-client", continuing
+37 silly lifecycle No script for "preversion" in "@locatienet/leaflet-searchaddress", continuing
+38 silly lifecycle No script for "preversion" in "@locatienet/leaflet-tilelayer", continuing
+39 silly lifecycle No script for "version" in "@locatienet/leaflet-searchaddress", continuing
+40 silly lifecycle No script for "version" in "@locatienet/leaflet-tilelayer", continuing
+41 silly lifecycle No script for "version" in "locatienet-js", continuing
+42 verbose version Updating root package-lock.json
+43 error Error: Command failed with exit code 1: npm install --package-lock-only --ignore-scripts
+43 error npm error code EJSONPARSE
+43 error npm error path C:\websites\Locatienet-js/package.json
+43 error npm error JSON.parse Expected double-quoted property name in JSON at position 650 (line 16 column 3) while parsing near "...aflet-tilelayer\",\n  y  \"publish\": \"lerna..."
+43 error npm error JSON.parse Failed to parse JSON data.
+43 error npm error JSON.parse Note: package.json must be actual JSON, not just JavaScript.
+43 error npm error A complete log of this run can be found in: C:\Users\Gebruiker\AppData\Local\npm-cache\_logs\2025-09-06T10_54_58_552Z-debug-0.log
+43 error     at makeError (C:\websites\Locatienet-js\node_modules\execa\lib\error.js:59:11)
+43 error     at handlePromise (C:\websites\Locatienet-js\node_modules\execa\index.js:114:26)
+43 error     at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+43 error     at async VersionCommand.updatePackageVersions (C:\websites\Locatienet-js\node_modules\lerna\dist\index.js:10080:13)
+43 error     at async Promise.all (index 0)
