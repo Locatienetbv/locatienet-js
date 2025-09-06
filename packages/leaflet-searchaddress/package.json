@@ -19,8 +19,7 @@
         "clean": "rimraf dist",
         "build": "npm run clean && rollup -c",
         "watch": "npm run clean && rollup -c --watch",
-        "dev": "concurrently \"npm run watch\" \"serve . -l 8085\"",
-        "publish": "npm publish --access public"
+        "dev": "concurrently \"npm run watch\" \"serve . -l 8085\""
     },
     "devDependencies": {
         "bootstrap": "^5.3.8"
@@ -28,5 +27,5 @@
     "dependencies": {
         "@locatienet/api-client": "^1.0.12"
     },
-    "gitHead": "603c25287647f8b4b5ac02149bb1ec5caac2e6f0"
+    "gitHead": "9db119b703faaa196ca384d12eb396b987ece17c"
 }

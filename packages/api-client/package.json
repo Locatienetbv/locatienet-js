@@ -32,5 +32,5 @@
         "dts-bundle-generator": "^9.5.1",
         "openapi-typescript-codegen": "^0.29.0"
     },
-    "gitHead": "603c25287647f8b4b5ac02149bb1ec5caac2e6f0"
+    "gitHead": "9db119b703faaa196ca384d12eb396b987ece17c"
 }

@@ -18,7 +18,6 @@
         "build": "npm run clean && rollup -c",
         "watch": "npm run clean && rollup -c --watch",
         "dev": "concurrently \"npm run watch\" \"serve . -l 8086\"",
-        "publish": "npm publish --access public",
         "test": "echo \"Error: no test specified\" && exit 1",
         "clean": "rimraf dist"
     },
@@ -26,5 +25,5 @@
         "@types/leaflet": "^1.9.20",
         "leaflet": "^2.0.0-alpha.1"
     },
-    "gitHead": "603c25287647f8b4b5ac02149bb1ec5caac2e6f0"
+    "gitHead": "9db119b703faaa196ca384d12eb396b987ece17c"
 }
