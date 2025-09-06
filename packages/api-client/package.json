@@ -1,6 +1,6 @@
 {
     "name": "@locatienet/api-client",
-    "version": "1.0.13",
+    "version": "1.0.14",
     "description": "Browser-ready UMD client for Locatienet API's",
     "author": "Remco Zut",
     "homepage": "https://github.com/Locatienetbv/locatienet-js/tree/master/packages/api-client#readme",

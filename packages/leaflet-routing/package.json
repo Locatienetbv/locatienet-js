@@ -1,6 +1,6 @@
 {
     "name": "@locatienet/leaflet-routing",
-    "version": "1.0.13",
+    "version": "1.0.14",
     "description": "A Locatienet plugin routing for Leaflet Routing Machine",
     "author": "Remco Zut",
     "license": "MIT",
