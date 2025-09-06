@@ -2,11 +2,26 @@
 
 ***
 
-# Documentation
+# Locatienet-js
 
-## Packages
+## 🚀 Installation.
 
-- [@locatienet/api-client](@locatienet/api-client/README.md)
-- [@locatienet/leaflet-routing](@locatienet/leaflet-routing/README.md)
-- [@locatienet/leaflet-searchaddress](@locatienet/leaflet-searchaddress/README.md)
-- [@locatienet/leaflet-tilelayer](@locatienet/leaflet-tilelayer/README.md)
+To install the package, run:
+
+```sh
+npm install locatienet-js
+```
+
+## 📖 Usage
+
+```ts
+
+```
+
+## ⚙ Available options.
+
+- 
+
+## 📜 License
+
+Distributed under **MIT** license.

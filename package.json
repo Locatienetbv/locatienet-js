@@ -15,7 +15,7 @@
     "build:all": "npm run build:api-client && npm run build:leaflet-searchaddress && npm run build:leaflet-tilelayer",
     "_publish": "npm publish --access public --workspaces",
     "publish": "lerna version patch && lerna publish",
-    "docs": "typedoc --commentStyle all"
+    "docs": "typedoc --commentStyle all --plugin typedoc-plugin-markdown --plugin typedoc-github-theme"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^28.0.6",
@@ -35,6 +35,7 @@
     "sass-true": "^9.0.0",
     "tslib": "^2.8.1",
     "typedoc": "^0.28.12",
+    "typedoc-github-theme": "^0.3.1",
     "typedoc-plugin-markdown": "^4.8.1",
     "typescript": "^5.9.2"
   },

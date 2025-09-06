@@ -2,11 +2,11 @@
 
 ***
 
-[Documentation](../../../README.md) / [@locatienet/leaflet-tilelayer](../README.md) / LocatienetOptions
+[Documentation](../../../packages.md) / [@locatienet/leaflet-tilelayer](../README.md) / LocatienetOptions
 
 # Interface: LocatienetOptions
 
-Defined in: [packages/leaflet-tilelayer/src/index.ts:24](https://github.com/locatienetbv/Locatienet-js/blob/603c25287647f8b4b5ac02149bb1ec5caac2e6f0/packages/leaflet-tilelayer/src/index.ts#L24)
+Defined in: [packages/leaflet-tilelayer/src/index.ts:24](https://github.com/locatienetbv/Locatienet-js/blob/cc7659c999a1f81798796e59b56febfa80f02dcd/packages/leaflet-tilelayer/src/index.ts#L24)
 
 ## Extends
 

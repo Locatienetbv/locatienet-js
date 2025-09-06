@@ -2,11 +2,11 @@
 
 ***
 
-[Documentation](../../../README.md) / [@locatienet/leaflet-tilelayer](../README.md) / LocatienetTileLayer
+[Documentation](../../../packages.md) / [@locatienet/leaflet-tilelayer](../README.md) / LocatienetTileLayer
 
 # Class: LocatienetTileLayer
 
-Defined in: [packages/leaflet-tilelayer/src/index.ts:28](https://github.com/locatienetbv/Locatienet-js/blob/603c25287647f8b4b5ac02149bb1ec5caac2e6f0/packages/leaflet-tilelayer/src/index.ts#L28)
+Defined in: [packages/leaflet-tilelayer/src/index.ts:28](https://github.com/locatienetbv/Locatienet-js/blob/cc7659c999a1f81798796e59b56febfa80f02dcd/packages/leaflet-tilelayer/src/index.ts#L28)
 
 ## Extends
 
@@ -18,7 +18,7 @@ Defined in: [packages/leaflet-tilelayer/src/index.ts:28](https://github.com/loca
 
 > **new LocatienetTileLayer**(): `LocatienetTileLayer`
 
-Defined in: [packages/leaflet-tilelayer/src/index.ts:30](https://github.com/locatienetbv/Locatienet-js/blob/603c25287647f8b4b5ac02149bb1ec5caac2e6f0/packages/leaflet-tilelayer/src/index.ts#L30)
+Defined in: [packages/leaflet-tilelayer/src/index.ts:30](https://github.com/locatienetbv/Locatienet-js/blob/cc7659c999a1f81798796e59b56febfa80f02dcd/packages/leaflet-tilelayer/src/index.ts#L30)
 
 #### Returns
 
@@ -1501,7 +1501,7 @@ Defined in: node\_modules/@types/leaflet/index.d.ts:1702
 
 > **createTile**(`coords`, `done`): `HTMLImageElement`
 
-Defined in: [packages/leaflet-tilelayer/src/index.ts:34](https://github.com/locatienetbv/Locatienet-js/blob/603c25287647f8b4b5ac02149bb1ec5caac2e6f0/packages/leaflet-tilelayer/src/index.ts#L34)
+Defined in: [packages/leaflet-tilelayer/src/index.ts:34](https://github.com/locatienetbv/Locatienet-js/blob/cc7659c999a1f81798796e59b56febfa80f02dcd/packages/leaflet-tilelayer/src/index.ts#L34)
 
 #### Parameters
 

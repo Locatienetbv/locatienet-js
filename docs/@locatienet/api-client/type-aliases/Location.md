@@ -2,13 +2,13 @@
 
 ***
 
-[Documentation](../../../README.md) / [@locatienet/api-client](../README.md) / Location
+[Documentation](../../../packages.md) / [@locatienet/api-client](../README.md) / Location
 
 # Type Alias: Location
 
 > **Location** = `object`
 
-Defined in: [generated/models/Location.ts:9](https://github.com/locatienetbv/Locatienet-js/blob/603c25287647f8b4b5ac02149bb1ec5caac2e6f0/packages/api-client/src/generated/models/Location.ts#L9)
+Defined in: [generated/models/Location.ts:9](https://github.com/locatienetbv/Locatienet-js/blob/cc7659c999a1f81798796e59b56febfa80f02dcd/packages/api-client/src/generated/models/Location.ts#L9)
 
 Represents a geographical object in terms of its position and its address.
 
@@ -18,7 +18,7 @@ Represents a geographical object in terms of its position and its address.
 
 > `optional` **city**: `string` \| `null`
 
-Defined in: [generated/models/Location.ts:29](https://github.com/locatienetbv/Locatienet-js/blob/603c25287647f8b4b5ac02149bb1ec5caac2e6f0/packages/api-client/src/generated/models/Location.ts#L29)
+Defined in: [generated/models/Location.ts:29](https://github.com/locatienetbv/Locatienet-js/blob/cc7659c999a1f81798796e59b56febfa80f02dcd/packages/api-client/src/generated/models/Location.ts#L29)
 
 The city of the address,
 
@@ -28,7 +28,7 @@ The city of the address,
 
 > `optional` **coordinate**: [`Coordinate`](Coordinate.md)
 
-Defined in: [generated/models/Location.ts:38](https://github.com/locatienetbv/Locatienet-js/blob/603c25287647f8b4b5ac02149bb1ec5caac2e6f0/packages/api-client/src/generated/models/Location.ts#L38)
+Defined in: [generated/models/Location.ts:38](https://github.com/locatienetbv/Locatienet-js/blob/cc7659c999a1f81798796e59b56febfa80f02dcd/packages/api-client/src/generated/models/Location.ts#L38)
 
 ***
 
@@ -36,7 +36,7 @@ Defined in: [generated/models/Location.ts:38](https://github.com/locatienetbv/Lo
 
 > `optional` **country**: `string` \| `null`
 
-Defined in: [generated/models/Location.ts:37](https://github.com/locatienetbv/Locatienet-js/blob/603c25287647f8b4b5ac02149bb1ec5caac2e6f0/packages/api-client/src/generated/models/Location.ts#L37)
+Defined in: [generated/models/Location.ts:37](https://github.com/locatienetbv/Locatienet-js/blob/cc7659c999a1f81798796e59b56febfa80f02dcd/packages/api-client/src/generated/models/Location.ts#L37)
 
 Country code according to ISO 3166-1 alpha-2. Defaults to NL. The search will be restricted to this country. When empty, all countries contained in the geocoding data will be included in the search.
 
@@ -46,7 +46,7 @@ Country code according to ISO 3166-1 alpha-2. Defaults to NL. The search will be
 
 > `optional` **description**: `string` \| `null`
 
-Defined in: [generated/models/Location.ts:51](https://github.com/locatienetbv/Locatienet-js/blob/603c25287647f8b4b5ac02149bb1ec5caac2e6f0/packages/api-client/src/generated/models/Location.ts#L51)
+Defined in: [generated/models/Location.ts:51](https://github.com/locatienetbv/Locatienet-js/blob/cc7659c999a1f81798796e59b56febfa80f02dcd/packages/api-client/src/generated/models/Location.ts#L51)
 
 A single string representing the address, typically consisting of the street, house number, postal code, city, and country. The precise format may differ based on what is appropriate for the address.
 
@@ -56,7 +56,7 @@ A single string representing the address, typically consisting of the street, ho
 
 > `optional` **distance**: `number` \| `null`
 
-Defined in: [generated/models/Location.ts:47](https://github.com/locatienetbv/Locatienet-js/blob/603c25287647f8b4b5ac02149bb1ec5caac2e6f0/packages/api-client/src/generated/models/Location.ts#L47)
+Defined in: [generated/models/Location.ts:47](https://github.com/locatienetbv/Locatienet-js/blob/cc7659c999a1f81798796e59b56febfa80f02dcd/packages/api-client/src/generated/models/Location.ts#L47)
 
 A radius that specifies how close the route shall pass by the specified coordinate, only to be used with via waypoints. This radius refers to the distance on the road network in meters.
 When set there is no output waypoint. The route passes near the specified coordinate.
@@ -67,7 +67,7 @@ When set there is no output waypoint. The route passes near the specified coordi
 
 > `optional` **district**: `string` \| `null`
 
-Defined in: [generated/models/Location.ts:25](https://github.com/locatienetbv/Locatienet-js/blob/603c25287647f8b4b5ac02149bb1ec5caac2e6f0/packages/api-client/src/generated/models/Location.ts#L25)
+Defined in: [generated/models/Location.ts:25](https://github.com/locatienetbv/Locatienet-js/blob/cc7659c999a1f81798796e59b56febfa80f02dcd/packages/api-client/src/generated/models/Location.ts#L25)
 
 The district of the address, i.e. the entity below city.
 
@@ -77,7 +77,7 @@ The district of the address, i.e. the entity below city.
 
 > `optional` **houseNr**: `string` \| `null`
 
-Defined in: [generated/models/Location.ts:21](https://github.com/locatienetbv/Locatienet-js/blob/603c25287647f8b4b5ac02149bb1ec5caac2e6f0/packages/api-client/src/generated/models/Location.ts#L21)
+Defined in: [generated/models/Location.ts:21](https://github.com/locatienetbv/Locatienet-js/blob/cc7659c999a1f81798796e59b56febfa80f02dcd/packages/api-client/src/generated/models/Location.ts#L21)
 
 The HouseNr of the address
 
@@ -87,7 +87,7 @@ The HouseNr of the address
 
 > `optional` **postcode**: `string` \| `null`
 
-Defined in: [generated/models/Location.ts:13](https://github.com/locatienetbv/Locatienet-js/blob/603c25287647f8b4b5ac02149bb1ec5caac2e6f0/packages/api-client/src/generated/models/Location.ts#L13)
+Defined in: [generated/models/Location.ts:13](https://github.com/locatienetbv/Locatienet-js/blob/cc7659c999a1f81798796e59b56febfa80f02dcd/packages/api-client/src/generated/models/Location.ts#L13)
 
 The postal code of the address.
 
@@ -97,7 +97,7 @@ The postal code of the address.
 
 > `optional` **province**: `string` \| `null`
 
-Defined in: [generated/models/Location.ts:33](https://github.com/locatienetbv/Locatienet-js/blob/603c25287647f8b4b5ac02149bb1ec5caac2e6f0/packages/api-client/src/generated/models/Location.ts#L33)
+Defined in: [generated/models/Location.ts:33](https://github.com/locatienetbv/Locatienet-js/blob/cc7659c999a1f81798796e59b56febfa80f02dcd/packages/api-client/src/generated/models/Location.ts#L33)
 
 The name of the principal country subdivision which the address belongs to
 
@@ -107,7 +107,7 @@ The name of the principal country subdivision which the address belongs to
 
 > `optional` **score**: `number`
 
-Defined in: [generated/models/Location.ts:42](https://github.com/locatienetbv/Locatienet-js/blob/603c25287647f8b4b5ac02149bb1ec5caac2e6f0/packages/api-client/src/generated/models/Location.ts#L42)
+Defined in: [generated/models/Location.ts:42](https://github.com/locatienetbv/Locatienet-js/blob/cc7659c999a1f81798796e59b56febfa80f02dcd/packages/api-client/src/generated/models/Location.ts#L42)
 
 Indicates the overall match quality for a geocoding request. 100 (percent) represents a perfect match between the input and the result.
 
@@ -117,6 +117,6 @@ Indicates the overall match quality for a geocoding request. 100 (percent) repre
 
 > `optional` **street**: `string` \| `null`
 
-Defined in: [generated/models/Location.ts:17](https://github.com/locatienetbv/Locatienet-js/blob/603c25287647f8b4b5ac02149bb1ec5caac2e6f0/packages/api-client/src/generated/models/Location.ts#L17)
+Defined in: [generated/models/Location.ts:17](https://github.com/locatienetbv/Locatienet-js/blob/cc7659c999a1f81798796e59b56febfa80f02dcd/packages/api-client/src/generated/models/Location.ts#L17)
 
 The street name of the address

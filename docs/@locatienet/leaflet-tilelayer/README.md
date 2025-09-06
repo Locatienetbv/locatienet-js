@@ -2,7 +2,7 @@
 
 ***
 
-[Documentation](../../README.md) / @locatienet/leaflet-tilelayer
+[Documentation](../../packages.md) / @locatienet/leaflet-tilelayer
 
 # Locatienet Leaflet Tilelayer
 
@@ -35,7 +35,7 @@ Example of use with Leaflet:
 
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-    <script src="https://unpkg.com/@locatienet/leaflet-tilelayer@1.0.2/dist/leaflet-tilelayer.js?apikey=YOUR_API_KEY_HERE"></script>
+    <script src="https://unpkg.com/@locatienet/leaflet-tilelayer/dist/leaflet-tilelayer.js?apikey=YOUR_API_KEY_HERE"></script>
 
     <script>
         const map = L.map('map').setView([52.1, 5.1], 7);

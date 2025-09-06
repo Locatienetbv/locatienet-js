@@ -2,13 +2,13 @@
 
 ***
 
-[Documentation](../../../README.md) / [@locatienet/api-client](../README.md) / Api
+[Documentation](../../../packages.md) / [@locatienet/api-client](../README.md) / Api
 
 # Variable: Api
 
 > `const` **Api**: `object`
 
-Defined in: [index.ts:12](https://github.com/locatienetbv/Locatienet-js/blob/603c25287647f8b4b5ac02149bb1ec5caac2e6f0/packages/api-client/src/index.ts#L12)
+Defined in: [index.ts:12](https://github.com/locatienetbv/Locatienet-js/blob/cc7659c999a1f81798796e59b56febfa80f02dcd/packages/api-client/src/index.ts#L12)
 
 ## Type Declaration
 

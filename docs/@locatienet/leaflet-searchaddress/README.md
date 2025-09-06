@@ -2,7 +2,7 @@
 
 ***
 
-[Documentation](../../README.md) / @locatienet/leaflet-searchaddress
+[Documentation](../../packages.md) / @locatienet/leaflet-searchaddress
 
 # Leaflet-searchaddress
 

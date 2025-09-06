@@ -2,7 +2,7 @@
 
 ***
 
-[Documentation](../../README.md) / @locatienet/api-client
+[Documentation](../../packages.md) / @locatienet/api-client
 
 # Locatienet API Client
 
