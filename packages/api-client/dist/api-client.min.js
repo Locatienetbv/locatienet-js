@@ -1,5 +1,5 @@
 /*!
- * Locatienet @locatienet/api-client v1.0.18 (https://github.com/Locatienetbv/locatienet-js/tree/master/packages/api-client#readme)
+ * Locatienet @locatienet/api-client v1.0.19 (https://github.com/Locatienetbv/locatienet-js/tree/master/packages/api-client#readme)
  * Copyright 2021-2025 Remco Zut
  * Licensed under MIT (https://github.com/locatienetbv/locatienet-js/LICENSE)
  */
