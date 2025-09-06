@@ -1,3 +1,5 @@
 # Use LF for all JS files
+# .gitattributes in repo root
+* text=auto eol=lf
 *.js text eol=lf
 *.ts text eol=lf
