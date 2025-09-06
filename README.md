@@ -5,10 +5,11 @@
 To install the package, run:
 
 ```sh
-npm install locatienet-js
+npm install @locatienet/api-client
 ```
 
 ## 📖 Usage
+
 
 
 

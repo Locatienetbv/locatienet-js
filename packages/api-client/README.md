@@ -14,11 +14,11 @@ npm install @locatienet/api-client
 
 Example of use:
 
-```ts
+```js
 <script>
-	window.LN_API_KEY = 'YOUR_API_KEY_HERE';
+window.LN_API_KEY = 'YOUR_API_KEY_HERE';
 </script>
-<script src="dist/api.js"></script>
+<script src="dist/api-client.js"></script>
 <script>
 // Call the API
 LN.api.getCountries().then(countries => {
