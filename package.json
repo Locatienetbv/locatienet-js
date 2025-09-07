@@ -14,7 +14,7 @@
     "build:api-client": "npm --workspace=@locatienet/api-client run build",
     "build:all": "npm run build:api-client && npm run build:leaflet-searchaddress && npm run build:leaflet-tilelayer",
     "prepublish:all": "git add . && git commit -m \"build for publish\" && git push",
-    "publish": "npm run prepublish:all && npx lerna publish --conventional-commits --yes",
+    "lerna:publish": "npm run prepublish:all && npx lerna publish --conventional-commits --yes",
     "docs": "call ./scripts/publish-locatienet-api-docs.bat && call ./scripts/publish-locatienet-js-docs.bat"
   },
   "devDependencies": {
