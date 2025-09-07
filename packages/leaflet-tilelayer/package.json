@@ -1,6 +1,6 @@
 {
     "name": "@locatienet/leaflet-tilelayer",
-    "version": "1.0.23",
+    "version": "1.0.24",
     "description": "A plugin tilelayer for Leaflet",
     "author": "Remco Zut",
     "license": "MIT",
@@ -28,7 +28,7 @@
         "leaflet": "^2.0.0-alpha.1"
     },
     "dependencies": {
-        "@locatienet/api-client": "^1.0.23"
+        "@locatienet/api-client": "^1.0.24"
     },
     "publishConfig": {
         "access": "public"
