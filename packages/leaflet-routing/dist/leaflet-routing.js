@@ -1,5 +1,5 @@
 /*!
- * Locatienet @locatienet/leaflet-routing v1.0.25 (https://github.com/Locatienetbv/locatienet-js/tree/master/packages/leaflet-routing#readme)
+ * Locatienet @locatienet/leaflet-routing v1.0.26 (https://github.com/Locatienetbv/locatienet-js/tree/master/packages/leaflet-routing#readme)
  * Copyright 2021-2025 Remco Zut
  * Licensed under MIT (https://github.com/locatienetbv/locatienet-js/LICENSE)
  */

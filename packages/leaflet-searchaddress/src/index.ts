@@ -1,4 +1,5 @@
 import { SearchAddressControl } from "./SearchAddressControl";
+import { SearchAddress, SearchAddressOptions } from "./SearchAddress";
 
 // UMD globals (only if Leaflet is loaded)
 if (typeof window !== "undefined" && (window as any).L) {
@@ -11,3 +12,5 @@ if (typeof window !== "undefined" && (window as any).L) {
 
 }
 
+export { SearchAddressControl, SearchAddress };
+export type { SearchAddressOptions };

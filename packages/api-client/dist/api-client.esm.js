@@ -1,5 +1,5 @@
 /*!
- * Locatienet @locatienet/api-client v1.0.25 (https://github.com/Locatienetbv/locatienet-js/tree/master/packages/api-client#readme)
+ * Locatienet @locatienet/api-client v1.0.26 (https://github.com/Locatienetbv/locatienet-js/tree/master/packages/api-client#readme)
  * Copyright 2021-2025 Remco Zut
  * Licensed under MIT (https://github.com/locatienetbv/locatienet-js/LICENSE)
  */
@@ -738,10 +738,43 @@
          * @returns {*}  {Promise<Array<LocateFeatureResult>>}
          */
         locateByText: locateByText,
+        /**
+         * Search for locations using structured address input.
+         *
+         * @param {Address} address
+         * @param {LocateOptions} [options]
+         * @returns {*}  {Promise<Array<LocateFeatureResult>>}
+         */
         locateByAddress: locateByAddress,
+        /**
+         * Search for addresses using structured coordinate input.
+         *
+         * @param {(Coordinate | Position)} position
+         * @param {LocateOptions} [options]
+         * @returns {*}  {Promise<Array<LocateFeatureResult>>}
+         */
         locateByPosition: locateByPosition,
+        /**
+         * Calculates and returns basic route information and polyline as GeoJSON Feature.
+         *
+         * @param {Location[]} [locations]
+         * @param {RouteOptions} [options]
+         * @returns {*}  {Promise<RouteInfoFeatureResult>}
+         */
         calculateRouteInfo: calculateRouteInfo,
+        /**
+         * Calculates and returns basic route information, descriptions and polyline.
+         *
+         * @param {Location[]} [locations]
+         * @param {RouteOptions} [options]
+         * @returns {*}  {Promise<CalculateRouteDescriptionResponse>}
+         */
         calculateRoute: calculateRouteInfo,
+        /**
+         * Fetch all EU country information, name in different languages and their iso codes
+         *
+         * @returns {*}  {Promise<Country[]>}
+         */
         countries: countries
     };
     // Attach to global for UMD

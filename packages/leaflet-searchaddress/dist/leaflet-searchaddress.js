@@ -1,13 +1,13 @@
 /*!
- * Locatienet @locatienet/leaflet-searchaddress v1.0.25 (https://github.com/Locatienetbv/locatienet-js/tree/master/packages/leaflet-searchaddress#readme)
+ * Locatienet @locatienet/leaflet-searchaddress v1.0.27 (https://github.com/Locatienetbv/locatienet-js/tree/master/packages/leaflet-searchaddress#readme)
  * Copyright 2021-2025 Remco Zut
  * Licensed under MIT (https://github.com/locatienetbv/locatienet-js/LICENSE)
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(require('leaflet')) :
-    typeof define === 'function' && define.amd ? define(['leaflet'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory(global.L));
-})(this, (function (L) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('leaflet')) :
+    typeof define === 'function' && define.amd ? define(['exports', 'leaflet'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.L = global.L || {}, global.L.SearchAddress = global.L.SearchAddress || {}, global.L.SearchAddress.Control = {}), global.L));
+})(this, (function (exports, L) { 'use strict';
 
     function _interopNamespaceDefault(e) {
         var n = Object.create(null);
@@ -31,7 +31,7 @@
     var apiClient_min$1 = {exports: {}};
 
     /*!
-     * Locatienet @locatienet/api-client v1.0.25 (https://github.com/Locatienetbv/locatienet-js/tree/master/packages/api-client#readme)
+     * Locatienet @locatienet/api-client v1.0.26 (https://github.com/Locatienetbv/locatienet-js/tree/master/packages/api-client#readme)
      * Copyright 2021-2025 Remco Zut
      * Licensed under MIT (https://github.com/locatienetbv/locatienet-js/LICENSE)
      */
@@ -233,6 +233,9 @@
             return new SearchAddressControl();
         };
     }
+
+    exports.SearchAddress = SearchAddress;
+    exports.SearchAddressControl = SearchAddressControl;
 
 }));
 //# sourceMappingURL=leaflet-searchaddress.js.map
