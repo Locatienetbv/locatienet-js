@@ -13,10 +13,10 @@ set SUBDIR=locatienet-js-docs
 set DOCS_DIR=%PROJECT_DIR%\docs
 
 REM ---- Step 1: Build docs via npm ----
-echo Building TypeDoc docs via npm run docs...
-call npm run docs
+echo Building TypeDoc docs...
+npx typedoc --commentStyle all --plugin typedoc-github-theme
 IF %ERRORLEVEL% NEQ 0 (
-    echo [ERROR] npm run docs failed.
+    echo [ERROR] building typedoc docs failed.
     exit /b 1
 )
 

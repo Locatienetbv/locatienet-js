@@ -8,6 +8,12 @@ This monorepo contains a Locatienet API Client and several plugins for leaflet
 
 Documentation <https://locatienetbv.github.io/locatienet-js-docs/>
 
+
+
+
+## Status
+
+
 ## 📜 License
 
 Distributed under **MIT** license.

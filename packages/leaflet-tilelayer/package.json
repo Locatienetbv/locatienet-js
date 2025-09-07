@@ -14,6 +14,7 @@
     "main": "dist/leaflet-tilelayer.js",
     "module": "dist/leaflet-tilelayer.esm.js",
     "browser": "dist/leaflet-tilelayer.min.js",
+    "types": "dist/index.d.ts",
     "type": "module",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
@@ -32,5 +33,5 @@
     "publishConfig": {
         "access": "public"
     },
-    "gitHead": "f5ee2c0164b26365a14ad82510eb5388588ba55d"
+    "gitHead": "62ce657a1f4f5df1b6741fa881a1ffdc0769ad8e"
 }
