@@ -113,14 +113,79 @@ type Location$1 = {
 	 */
 	description?: string | null;
 };
-type Country = {
+/**
+ * Defines values for ManeuverType.
+ */
+export type ManeuverType = "START" | "STARTLEFT" | "STARTRIGHT" | "ARRIVE" | "ARRIVELEFT" | "ARRIVERIGHT" | "CONTINUE" | "KEEPSTRAIGHT" | "KEEPLEFT" | "KEEPRIGHT" | "TURNHALFLEFT" | "TURNLEFT" | "TURNSHARPLEFT" | "TURNHALFRIGHT" | "TURNRIGHT" | "TURNSHARPRIGHT" | "MAKEUTURN" | "TAKEROUNDABOUTLEFT" | "TAKEROUNDABOUTRIGHT" | "TAKECOMBINEDTRANSPORT" | "ENTER" | "ENTERLEFT" | "ENTERRIGHT" | "EXIT" | "EXITLEFT" | "EXITRIGHT" | "CHANGE" | "CHANGELEFT" | "CHANGERIGHT";
+export type RoadEvent = "WAYPOINT" | "FERRY" | "TRAIN" | "BORDER" | "TOLL";
+export type RouteDescription = {
+	/**
+	 * The distance of the route from the start up to this description.
+	 */
+	accDistance?: number;
+	/**
+	 * The travel time for the route from the start up to this event.
+	 */
+	accTime?: number;
+	/**
+	 * A descriptive text for the current maneuver.
+	 */
+	description?: string | null;
+	/**
+	 * The city names and road numbers on a signpost at the current location to follow for the current maneuver.
+	 */
+	directions?: string | null;
+	/**
+	 * The name of the current road
+	 */
+	roadName?: string | null;
+	/**
+	 * The road number
+	 */
+	roadNumber?: string | null;
+	/**
+	 * Defines the network class of a road. The road segments are divided into eight network classes by importance of the roads they represent. The network class 0 represents the most important roads, for example highways, while road segments of network class 7 are the least important roads, for example pedestrian paths. Range: 0 ≤ value ≤ 7.
+	 */
+	networkClass?: number | null;
+	maneuverType?: ManeuverType;
+	event?: RoadEvent;
+	country?: string | null;
+	coordinate?: Coordinate;
+};
+export type CalculateRouteDescriptionResponse = {
+	/**
+	 * The distance of the complete route.
+	 */
+	distance?: number;
+	/**
+	 * The travel time for the complete route.
+	 */
+	travelTime?: number;
+	/**
+	 * The total delay due to traffic incidents(traffic jams, construction sites etc.) on the route.
+	 */
+	trafficDelay?: number | null;
+	waypoints?: Array<Location$1> | null;
+	/**
+	 * List of descriptions describing the route
+	 */
+	descriptions?: Array<RouteDescription> | null;
+	/**
+	 * List of coordinates of the polyline of the route
+	 */
+	polyline?: Array<Coordinate> | null;
+};
+export type Country = {
 	value?: string | null;
 	iso2?: string | null;
 	iso3?: string | null;
 	lang?: Record<string, string> | null;
 	bBox?: BoundingBox;
 };
-type CountryType = "ISO31661ALPHA2" | "ISO31661ALPHA3" | "LICENSEPLATE" | "NAME";
+/**
+ * Defines values for CountryType.
+ */
+export type CountryType = "ISO31661ALPHA2" | "ISO31661ALPHA3" | "LICENSEPLATE" | "NAME";
 export type LocateOptions = {
 	/**
 	 * The language used for geographic names. Defaults to nl. This standard allows to use two-letter ISO 639-1 codes
@@ -173,13 +238,25 @@ export type RouteOptions = {
 	 */
 	includePolyline?: boolean;
 };
-interface LocateFeatureResult extends Feature<Point> {
-	properties: Address;
+/**
+ * Extended GeoJSON Point Feature with address information
+ *
+ * @interface LocateFeatureResult
+ * @extends {Feature<Point>}
+ */
+export interface LocateFeatureResult extends Feature<Point> {
+	properties: Location$1;
 }
 declare function locateByText(query: string, country?: string, options?: LocateOptions): Promise<Array<LocateFeatureResult>>;
 declare function locateByAddress(address: Address, options?: LocateOptions): Promise<Array<LocateFeatureResult>>;
 declare function locateByPosition(position: Coordinate | Position, options?: LocateOptions): Promise<Array<LocateFeatureResult>>;
-interface RouteInfoFeatureResult extends Feature<LineString> {
+/**
+ * Extended GeoJSON Linestring Feature with route info
+ *
+ * @interface RouteInfoFeatureResult
+ * @extends {Feature<LineString>}
+ */
+export interface RouteInfoFeatureResult extends Feature<LineString> {
 	properties: {
 		distance?: number;
 		travelTime?: number;

@@ -16,8 +16,8 @@
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
     <!-- Locatienet Leaflet SearchAddress  -->
-    <link rel="stylesheet" href="https://unpkg.com/@locatienet/leaflet-searchaddress/dist/leaflet-searchaddress.css" />
-    <script src="https://unpkg.com/@locatienet/leaflet-searchaddress/dist/leaflet-searchaddress.js?apikey=YOUR_APIKEY_HERE"></script>
+    <link rel="stylesheet" href="dist/leaflet-searchaddress.css" />
+    <script src="dist/leaflet-searchaddress.js?apikey=YOUR_APIKEY_HERE"></script>
     
     <script src="https://unpkg.com/@locatienet/leaflet-tilelayer/dist/leaflet-tilelayer.js?apikey=YOUR_APIKEY_HERE"></script>
     
@@ -28,10 +28,13 @@
         // Add Locatienet Leaflet SearchAddress control
         const searchAddress = new L.Control.SearchAddress().addTo(map);
 
+        // Optional: Add Locatienet Leaflet SearchPosition control - for reverse geocoding
+        const searchPosition = new L.Control.SearchPosition().addTo(map);
+
 
         // Listen to SearchAddress event address selected
         const featureGroup = L.featureGroup().addTo(map)
-		searchAddress.on('address', (e) => {
+		map.on('address', (e) => {
             featureGroup.clearLayers();
             L.geoJSON(e.address).bindPopup(function (layer) {
                 return layer.feature.properties.description;

@@ -1,4 +1,5 @@
 // scss-docs-start import-stack
+@import url('./css/country-flag.css');
 // Configuration
 @import "bootstrap/scss/functions";
 @import "bootstrap/scss/variables";
@@ -17,7 +18,7 @@
 @import "bootstrap/scss/utilities/api";
 
  
-//@import "bootstrap/scss/dropdown";
+@import "bootstrap/scss/dropdown";
 @import "bootstrap/scss/list-group";
 @import "bootstrap/scss/forms";
 

@@ -1,4 +1,4 @@
-import { locateByText, locateByAddress, countries, locateByPosition, calculateRouteInfo } from "./functions";
+import { locateByText, locateByAddress, countries, locateByPosition, calculateRouteInfo, LocateFeatureResult, RouteInfoFeatureResult } from "./functions";
 /** @type {*} */
 declare const Api: {
     apikey: any;
@@ -51,5 +51,5 @@ declare const Api: {
     countries: typeof countries;
 };
 export { Api };
-import { Address, Coordinate, LocateOptions, Location, RouteOptions } from "./generated";
-export type { Address, Coordinate, Location, LocateOptions, RouteOptions };
+import { Address, Coordinate, LocateOptions, Location, RouteOptions, CountryType, Country, CalculateRouteDescriptionResponse, RouteDescription, ManeuverType, RoadEvent } from "./generated";
+export type { Address, Coordinate, Location, LocateOptions, RouteOptions, CountryType, Country, CalculateRouteDescriptionResponse, RouteDescription, ManeuverType, RoadEvent, LocateFeatureResult, RouteInfoFeatureResult };

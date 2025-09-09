@@ -1,5 +1,5 @@
 import { OpenAPI } from "./generated";
-import { locateByText, locateByAddress, countries, locateByPosition, calculateRouteInfo  } from "./functions";
+import { locateByText, locateByAddress, countries, locateByPosition, calculateRouteInfo, LocateFeatureResult, RouteInfoFeatureResult  } from "./functions";
 import apikey from './apikey';
 
 // Configure OpenAPI defaults
@@ -76,5 +76,5 @@ if (typeof window !== 'undefined') {
 
 export { Api };
 
-import { Address, Coordinate, LocateOptions, Location, RouteOptions} from "./generated";
-export type { Address, Coordinate, Location, LocateOptions, RouteOptions};
+import { Address, Coordinate, LocateOptions, Location, RouteOptions, CountryType, Country, CalculateRouteDescriptionResponse, RouteDescription, ManeuverType, RoadEvent} from "./generated";
+export type { Address, Coordinate, Location, LocateOptions, RouteOptions, CountryType, Country, CalculateRouteDescriptionResponse, RouteDescription, ManeuverType, RoadEvent, LocateFeatureResult, RouteInfoFeatureResult};

@@ -11,7 +11,7 @@ import { randomUUID } from "crypto";
 import { createRequire } from "module";
 import { fileURLToPath } from "url";
 import path from "path";
-import { glob } from "glob";
+import { glob } from "tinyglobby";
 
 const require = createRequire(import.meta.url);
 const rootPkg = require("../package.json");

@@ -12,6 +12,9 @@
         "strict": true, // All strict type checks
         "skipLibCheck": false, // Avoid errors from 3rd party type definitions
         "resolveJsonModule": true, // Allows importing JSON (like Swagger specs)
-        "isolatedModules": true // Required if using ESM + TS in some build tools
+        "isolatedModules": true, // Required if using ESM + TS in some build tools
+        "paths": {
+           "glob": ["./node_modules/glob"]
+        }
     }
 }

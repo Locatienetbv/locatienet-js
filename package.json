@@ -10,9 +10,9 @@
   "scripts": {
     "build": "npm run build --workspaces",
     "prepublish:all": "git add . && git commit -m \"build for publish\" && git push",
-    "release:patch": "node build/create-changeset.mjs patch && npx changeset version && npm run build && npx changeset publish && node build/deprecate-old-versions.mjs",
-    "release:minor": "node build/create-changeset.mjs minor && npx changeset version && npm run build && npx changeset publish && node build/deprecate-old-versions.mjs",
-    "release:major": "node build/create-changeset.mjs major && npx changeset version && npm run build && npx changeset publish && node build/deprecate-old-versions.mjs",
+    "release:patch": "node build/create-changeset.mjs patch && npx changeset version && npm run build && npx changeset publish",
+    "release:minor": "node build/create-changeset.mjs minor && npx changeset version && npm run build && npx changeset publish",
+    "release:major": "node build/create-changeset.mjs major && npx changeset version && npm run build && npx changeset publish",
     "release:searchaddress": "node build/create-changeset.mjs patch \"Automated patch release\" @locatienet/leaflet-searchaddress && npx changeset version && npm --workspace @locatienet/leaflet-searchaddress run build && npm --workspace @locatienet/leaflet-searchaddress publish --access public",
     "docs": "call ./scripts/publish-locatienet-api-docs.bat && call ./scripts/publish-locatienet-js-docs.bat"
   },
@@ -25,7 +25,6 @@
     "autoprefixer": "^10.4.21",
     "banner": "^0.0.5",
     "concurrently": "^9.2.1",
-    "glob": "^11.0.3",
     "postcss-scss": "^4.0.9",
     "rimraf": "^6.0.1",
     "rollup": "^4.50.0",
@@ -33,6 +32,7 @@
     "rollup-plugin-postcss": "^4.0.2",
     "sass": "^1.91.0",
     "sass-true": "^9.0.0",
+    "tinyglobby": "^0.2.15",
     "tslib": "^2.8.1",
     "typedoc": "^0.28.12",
     "typedoc-github-theme": "^0.3.1",

@@ -7,7 +7,7 @@ import type { Feature, LineString, Point, Position } from "geojson";
  * @extends {Feature<Point>}
  */
 export interface LocateFeatureResult extends Feature<Point> {
-    properties: Address;
+    properties: Location;
 }
 /**
  * Search for locations using a free-form text input.

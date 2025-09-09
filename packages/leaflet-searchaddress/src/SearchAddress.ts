@@ -1,179 +1,188 @@
-import * as L from "leaflet";
-import { Api } from "@locatienet/api-client";
+import L, { Map, ControlOptions, Evented } from 'leaflet';
+import { CountriesDropDown, CountriesDropDownOptions } from './CountriesDropDown';
+import { Api } from '@locatienet/api-client';
+import { Dropdown, Tab }  from 'bootstrap';
 
-export interface SearchAddressOptions extends L.ControlOptions {
-    query?: string;
-    address?: string;
-    selectedCountry?: string;
-    placeholder?: string;
-    language?: string;
+export interface SearchAddressOptions extends ControlOptions{
+  query?: string;
+  selectedCountry?: string;
+  placeholder?: string;
 }
 
-export class SearchAddress extends L.Evented {
-    private _map: L.Map;
-    private _container: HTMLElement;
-    private options: SearchAddressOptions;
-    private token?: number;
-    private static countries: any[] = [];
+export class SearchAddress extends Evented {
+  private _map: Map;
+  private _container: HTMLElement;
+  private options: SearchAddressOptions;
+  private token?: number;
 
-    constructor(map: L.Map, container: HTMLElement, options: SearchAddressOptions = {}) {
-        super();
-        this._map = map;
-        this._container = container;
-        this.options = {
-            //selectedCountry: '',
-            placeholder: 'Zoek adres',
-            language: 'nl',
-            ...options
-        };
-        this._init();
+  private queryInput!: HTMLInputElement;
+  private resultContainer!: HTMLElement;
+  private countriesDropdownContainer!: HTMLElement;
+
+  constructor(map: Map, container: HTMLElement, options: SearchAddressOptions = {}) {
+    super();
+    L.setOptions(this, options);
+    this._map = map;
+    this._container = container;
+    this.options = {
+      query: '',
+      selectedCountry: 'NL',
+      placeholder: 'Zoek adres',
+      ...options,
+    };
+    this._init();
+  }
+
+  private _init() {
+    if (L.DomEvent) {
+      L.DomEvent.disableClickPropagation(this._container);
+      L.DomEvent.disableScrollPropagation(this._container);
     }
 
-    private _init() {
-        L.DomEvent.disableClickPropagation(this._container);
-        L.DomEvent.disableScrollPropagation(this._container);
-  
-        // --- Create search bar ---
-        const searchBar = document.createElement('div');
-        searchBar.className = 'searchaddress-form p-0 w-100';
-        searchBar.innerHTML = `
 
-            <div class="input-group d-flex justify-content-start">
-                <input id="searchaddress-query" type="text" class="form-control rounded-0"
-                       placeholder="${this.options.placeholder}" data-country="${this.options.selectedCountry}" />
-                
-            </div>
-            <div id="searchaddress-result" class="position-absolute list-group mt-1 w-100 pe-3 shadow" style="display:none;"></div>
-            
-        `;
-        this._container.appendChild(searchBar);
+    // Build search bar
+    this._container.innerHTML = `
+      <div class="address-form form-group">
+        <div class="input-group d-flex m-1">
+          <input id="address-query" type="text" class="address-input form-control rounded-2 geocomplete"
+                 autofocus autocomplete="off" tabindex="0"
+                 placeholder="${this.options.placeholder || ''}" 
+                 value="${this.options.query}" />
+          <div id="address-countries" class="countries dropdown btn-group input-text-group"></div>
+        </div>
+        
+        <div id="address-result" class="position-absolute list-group mt-1 w-100 shadow"></div>
+        
+      </div>
+    `;
 
-        // --- Load countries ---
-        // Api.countries().then(data => {
-        //     SearchAddress.countries = data;
-        //     this._renderCountries();
-        // });
+    this.queryInput = this._container.querySelector('#address-query') as HTMLInputElement;
+    this.resultContainer = this._container.querySelector('#address-result') as HTMLElement;
+    
+    new Tab(this.resultContainer)
 
-        this._bindEvents();
+    this.countriesDropdownContainer = this._container.querySelector('#address-countries') as HTMLElement;
+    new Dropdown(this.countriesDropdownContainer)
 
-        if (this.options.query) {
-            (document.getElementById('searchaddress-query') as HTMLInputElement).value = this.options.query;
-            this._search();
-        }
+    // Initialize CountriesDropDown
+    new CountriesDropDown(this.countriesDropdownContainer, {
+      selectedCountry: this.options.selectedCountry,
+      onSelect: (newCountry) => {
+        this.options.selectedCountry = newCountry;
+
+        // Optionally fit map to country bbox if available
+        // const bbox = ... get from CountriesDropDown if you added bbox support
+        // if (bbox) this._map.fitBounds([[bbox.top, bbox.left], [bbox.bottom, bbox.right]]);
+
+        this._search();
+      },
+    } as CountriesDropDownOptions);
+
+    this._bindEvents();
+
+    if (this.options.query) {
+      this.queryInput.value = this.options.query;
+      this._search();
     }
 
-    private _renderCountries() {
-        const self = this;
-        const dropdown = document.getElementById('searchaddress-countries');
-        if (!dropdown) return;
+  }
 
-        dropdown.innerHTML = '';
-        const ul = document.createElement('ul');
-        ul.className = 'dropdown-menu dropdown-menu-end';
-        ul.style.maxHeight = '300px';
-        ul.style.overflowY = 'auto';
+  private _bindEvents() {
+    // Key events
+    this.queryInput.addEventListener('keyup', (e: KeyboardEvent) => {
+      const key = e.which || e.keyCode;
+      const active = this.resultContainer.querySelector('.address-item.active') as HTMLElement;
 
-        SearchAddress.countries.forEach(c => {
-            const li = document.createElement('li');
-            const a = document.createElement('a');
-            a.className = 'dropdown-item';
-            a.href = '#';
-            a.dataset.country = c.iso2;
-            a.textContent = c.lang[self.options.language || 'nl'];
-            li.appendChild(a);
-            ul.appendChild(li);
+      if (key === 40 && active?.nextElementSibling) { // down
+        active.classList.remove('active');
+        (active.nextElementSibling as HTMLElement).classList.add('active');
+        e.preventDefault();
+        return;
+      }
+      if (key === 38 && active?.previousElementSibling) { // up
+        active.classList.remove('active');
+        (active.previousElementSibling as HTMLElement).classList.add('active');
+        e.preventDefault();
+        return;
+      }
+      if ([16, 36].includes(key)) return;
+
+      this.resultContainer.style.display = 'none';
+
+      if (key === 13) this._onEnterKeyPressed();
+      if ([13, 16, 46].includes(key)) {
+        if (key === 46) this.fire('clear');
+        return;
+      }
+
+      const query = this.queryInput.value;
+      if (!isNaN(Number(query)) || query.length < 2) return;
+
+      this._search();
+    });
+
+    // Focus / blur
+    this.queryInput.addEventListener('focus', () => setTimeout(() => this.resultContainer.style.display = 'block', 100));
+    this.queryInput.addEventListener('blur', () => setTimeout(() => this.resultContainer.style.display = 'none', 100));
+
+    // Click on address items (delegated)
+    this.resultContainer.addEventListener('click', (e) => {
+      const target = (e.target as HTMLElement).closest('.address-item') as HTMLElement;
+      if (!target) return;
+      e.preventDefault();
+      const address = JSON.parse(target.dataset.address!);
+      this._selectAddress(address);
+    });
+  }
+
+  private _onEnterKeyPressed() {
+    const active = this.resultContainer.querySelector('.address-item.active') as HTMLElement;
+    if (active?.dataset.address) {
+      this._selectAddress(JSON.parse(active.dataset.address));
+    }
+  }
+
+  private _fill(data: any[]) {
+    this.resultContainer.innerHTML = '';
+    if (!data || data.length === 0) return;
+
+    data.forEach((v, i) => {
+      const a = document.createElement('a');
+      a.className = `address-item list-group-item text-wrap ${i === 0 ? 'active' : ''}`;
+      a.href = '#';
+      a.dataset.address = JSON.stringify(v);
+      a.textContent = this._removeDiacritics(v.properties.description);
+
+        // Set active class on mouseover
+        a.addEventListener('mouseenter', () => {
+        // remove active from all siblings
+        this.resultContainer.querySelectorAll('.address-item.active').forEach(el => el.classList.remove('active'));
+        a.classList.add('active');
         });
 
-        dropdown.appendChild(ul);
-    }
+      this.resultContainer.appendChild(a);
+    });
 
-    private _bindEvents() {
-        const input = this._container.querySelector<HTMLInputElement>('#searchaddress-query');
-        if (!input) return;
+    this.resultContainer.style.display = 'block';
+    
+  }
 
-        input.addEventListener('keyup', (e: KeyboardEvent) => {
-            const query = (input.value || '').toString();
-            if (query.length > 1) this._search();
-            //if (e.key === 'Enter') this._onEnterKeyPressed();
-        });
+  private _search() {
+    if (this.token) clearTimeout(this.token);
+    const query = this.queryInput.value;
+    this.token = window.setTimeout(() => {
+      Api.locateByText(query, this.options.selectedCountry || 'NL', { minimalResultScore: 0}).then((data) => this._fill(data));
+    }, 100);
+  }
 
-        const dropdown = this._container.querySelector('#searchaddress-countries');
-        dropdown?.addEventListener('click', (e) => {
-            const target = e.target as HTMLElement;
-            if (target.tagName === 'A' && target.dataset.country) {
-                this.options.selectedCountry = target.dataset.country;
-                this._search();
-            }
-        });
+  private _selectAddress(address: GeoJSON.Feature) {
+    if (typeof address === 'string') address = new (window as any).Address(address);
+    this.resultContainer.style.display = 'none';
+    this.queryInput.value = address.properties?.description;
+    this.fire('address', { query: this.queryInput.value, address });
+  }
 
-        const resultContainer = this._container.querySelector('#searchaddress-result');
-        resultContainer?.addEventListener('click', (e) => {
-            const target = e.target as HTMLElement;
-            if (target.dataset.address) {
-                //e.preventDefault();
-                this._selectAddress(JSON.parse(target.dataset.address));
-            }
-        });
-
-        input.addEventListener('focus', () => {
-            const res = this._container.querySelector('#searchaddress-result') as HTMLElement;
-            if (res) res.style.display = 'block';
-        });
-
-        input.addEventListener('blur', () => {
-            setTimeout(() => {
-                const res = this._container.querySelector('#searchaddress-result') as HTMLElement;
-                if (res) res.style.display = 'none';
-            }, 100);
-        });
-    }
-
-
-    private _onEnterKeyPressed() {
-        const resultContainer = document.getElementById('searchaddress-result');
-        if (!resultContainer) return;
-
-        const activeItem = resultContainer.querySelector<HTMLAnchorElement>('.searchaddress-item.active');
-        if (activeItem && activeItem.dataset.address) {
-            this._selectAddress(JSON.parse(activeItem.dataset.address));
-        }
-    }
-
-
-    private _search() {
-        if (this.token) clearTimeout(this.token);
-        const input = document.getElementById('searchaddress-query') as HTMLInputElement;
-        const query = (input?.value || '').toString();
-
-        this.token = window.setTimeout(() => {
-            Api.locateByText(query, this.options.selectedCountry || '', { minimalResultScore: 0, language: this.options.language, numResults: 10 }).then(data => this._fill(data));
-        }, 100);
-    }
-
-    private _fill(data: any[]) {
-        const dropdown = document.getElementById('searchaddress-result');
-        if (!dropdown) return;
-
-        dropdown.innerHTML = '';
-        data.forEach((v, i) => {
-            const a = document.createElement('a');
-            a.className = `searchaddress-item list-group-item`; //  ${i === 0 ? 'active' : ''}
-            a.href = '#';
-            a.dataset.address = JSON.stringify(v);
-            a.textContent = v.properties.description;
-            dropdown.appendChild(a);
-        });
-        dropdown.style.display = data.length ? 'block' : 'none';
-    }
-
-    private _selectAddress(address: any) {
-        const input = document.getElementById('searchaddress-query') as HTMLInputElement;
-        if (!input) return;
-
-        input.value = address.properties.description || address;
-        const dropdown = document.getElementById('searchaddress-result');
-        if (dropdown) dropdown.style.display = 'none';
-
-        this.fire('address', { address });
-    }
+  private _removeDiacritics(str: string) {
+    return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+  }
 }

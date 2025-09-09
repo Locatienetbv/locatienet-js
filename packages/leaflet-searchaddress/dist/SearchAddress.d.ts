@@ -1,23 +1,23 @@
-import * as L from "leaflet";
-export interface SearchAddressOptions extends L.ControlOptions {
+import { Map, ControlOptions, Evented } from 'leaflet';
+export interface SearchAddressOptions extends ControlOptions {
     query?: string;
-    address?: string;
     selectedCountry?: string;
     placeholder?: string;
-    language?: string;
 }
-export declare class SearchAddress extends L.Evented {
+export declare class SearchAddress extends Evented {
     private _map;
     private _container;
     private options;
     private token?;
-    private static countries;
-    constructor(map: L.Map, container: HTMLElement, options?: SearchAddressOptions);
+    private queryInput;
+    private resultContainer;
+    private countriesDropdownContainer;
+    constructor(map: Map, container: HTMLElement, options?: SearchAddressOptions);
     private _init;
-    private _renderCountries;
     private _bindEvents;
     private _onEnterKeyPressed;
-    private _search;
     private _fill;
+    private _search;
     private _selectAddress;
+    private _removeDiacritics;
 }

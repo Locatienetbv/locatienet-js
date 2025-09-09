@@ -9,7 +9,7 @@ import type { Feature, FeatureCollection, LineString, Point, Position } from "ge
  * @extends {Feature<Point>}
  */
 export interface LocateFeatureResult extends Feature<Point> {
-  properties: Address
+  properties: Location
 }
 
 /**

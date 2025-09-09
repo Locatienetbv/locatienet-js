@@ -1,4 +1,5 @@
 import { SearchAddressControl } from "./SearchAddressControl";
 import { SearchAddress, SearchAddressOptions } from "./SearchAddress";
-export { SearchAddressControl, SearchAddress };
-export type { SearchAddressOptions };
+import { SearchPositionControl, SearchPositionOptions } from "./SearchPositionControl";
+export { SearchAddressControl, SearchAddress, SearchPositionControl };
+export type { SearchAddressOptions, SearchPositionOptions };

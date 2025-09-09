@@ -7,7 +7,8 @@ const distDir = path.resolve('./dist');
 
 const sharedGlobals = {
     leaflet: "L",
-    "@locatienet/api-client": "LocatienetApiClient"
+    "@locatienet/api-client": "LocatienetApiClient",
+    bootstrap: "bootstrap"
 };
 
 export default defineConfig([
@@ -20,7 +21,8 @@ export default defineConfig([
         globals: sharedGlobals,
         isSass: true,
         sassInput: "src/leaflet-searchaddress.scss",
-        sassOutput: path.join(distDir, "leaflet-searchaddress.css")
+        sassOutput: path.join(distDir, "leaflet-searchaddress.css"),
+        addAssets: true
 
     }),
     createRollupConfig({
@@ -33,6 +35,7 @@ export default defineConfig([
         isSass: true,
         sassInput: "src/leaflet-searchaddress.scss",
         sassOutput: path.join(distDir, "leaflet-searchaddress.min.css")
+        
     })
 ]);
 

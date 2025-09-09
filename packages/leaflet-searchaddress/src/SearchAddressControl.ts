@@ -1,12 +1,12 @@
 import * as L from "leaflet";
-import { SearchAddress, SearchAddressOptions } from "./SearchAddress"; // your class from above
+import { SearchAddress, SearchAddressOptions } from "./SearchAddress";
 
 export class SearchAddressControl extends L.Control  {
     private _map!: L.Map;
     private _container!: HTMLElement;
     private _searchaddress!: SearchAddress;
 
-    constructor(options?: SearchAddressOptions) {
+    constructor(options?: SearchAddressOptions | undefined) {
         super(options);
     }
 
@@ -25,12 +25,7 @@ export class SearchAddressControl extends L.Control  {
     private _bindEvents() {
 
         this._searchaddress.on("address", (data: any) => {
-            (this as unknown as L.Evented).fire("address", data);
-        });
-
-        this._searchaddress.on("clear", () => {
-            this._map.fire("clear-address");
-            (this as unknown as L.Evented).fire("clear");
+            this._map.fire("address", data);
         });
     }
 }

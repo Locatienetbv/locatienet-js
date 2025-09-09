@@ -4,7 +4,7 @@ export declare class SearchAddressControl extends L.Control {
     private _map;
     private _container;
     private _searchaddress;
-    constructor(options?: SearchAddressOptions);
+    constructor(options?: SearchAddressOptions | undefined);
     onAdd(map: L.Map): HTMLElement;
     private _bindEvents;
 }
