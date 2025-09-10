@@ -45,7 +45,8 @@ async function getWorkspacePackageNames() {
   const packageNames = [];
 
   for (const pattern of patterns) {
-    const dirs = await glob(pattern, { cwd: repoRoot, absolute: true });
+    const dirs = await glob(pattern, { cwd: repoRoot, absolute: true, onlyDirectories: true });
+    console.log("glob dirs", dirs)
     for (const dir of dirs) {
       try {
         const pkgPath = path.join(dir, "package.json");

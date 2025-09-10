@@ -5,18 +5,8 @@ const url = `https://tile{s}.locatienet.com/{z}/{x}/{y}.png?apikey=${Api.apikey}
 
 const attribution = ' &#169; <a href="https://locatienet.com">Locatienet</a>, <a href="https://ptvgroup.com">PTV Group</a>, <a href="https://here.com">HERE</a>'
 // declare all characters
-const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
 
-function generateString(length: number) {
-    let result = ' ';
-    const charactersLength = characters.length;
-    for (let i = 0; i < length; i++) {
-        result += characters.charAt(Math.floor(Math.random() * charactersLength));
-    }
-
-    return result;
-}
-
+import {generateString} from "@locatienet/shared"
 const sku = generateString(10);
 
 const options = { sku: sku, subdomains: '0123', minZoom: 4, maxZoom: 23, attribution: new Date().getFullYear() + attribution }

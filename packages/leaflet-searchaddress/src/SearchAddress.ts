@@ -3,6 +3,8 @@ import { CountriesDropDown, CountriesDropDownOptions } from './CountriesDropDown
 import { Api } from '@locatienet/api-client';
 import { Dropdown, Tab }  from 'bootstrap';
 
+const idSuffix : string = "11aakc"
+
 export interface SearchAddressOptions extends ControlOptions{
   query?: string;
   selectedCountry?: string;

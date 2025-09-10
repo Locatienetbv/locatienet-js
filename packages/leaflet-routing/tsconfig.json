@@ -4,6 +4,6 @@
         "rootDir": "src",
         "outDir": "dist"
     },
-    "include": [ "src" ],
+    "include": [ "src", "../../shared/src"],
     "exclude": [ "dist" ] // Ignore compiled JS and dependencies
 }

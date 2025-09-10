@@ -31,7 +31,7 @@
     var apiClient_min$1 = {exports: {}};
 
     /*!
-     * Locatienet @locatienet/api-client v1.0.26 (https://github.com/Locatienetbv/locatienet-js/tree/master/packages/api-client#readme)
+     * Locatienet @locatienet/api-client v1.0.27 (https://github.com/Locatienetbv/locatienet-js/tree/master/packages/api-client#readme)
      * Copyright 2021-2025 Remco Zut
      * Licensed under MIT (https://github.com/locatienetbv/locatienet-js/LICENSE)
      */
@@ -51,9 +51,6 @@
 
     var apiClient_minExports = requireApiClient_min();
 
-    const url = `https://tile{s}.locatienet.com/{z}/{x}/{y}.png?apikey=${apiClient_minExports.Api.apikey}`;
-    const attribution = ' &#169; <a href="https://locatienet.com">Locatienet</a>, <a href="https://ptvgroup.com">PTV Group</a>, <a href="https://here.com">HERE</a>';
-    // declare all characters
     const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
     function generateString(length) {
         let result = ' ';
@@ -63,6 +60,9 @@
         }
         return result;
     }
+
+    const url = `https://tile{s}.locatienet.com/{z}/{x}/{y}.png?apikey=${apiClient_minExports.Api.apikey}`;
+    const attribution = ' &#169; <a href="https://locatienet.com">Locatienet</a>, <a href="https://ptvgroup.com">PTV Group</a>, <a href="https://here.com">HERE</a>';
     const sku = generateString(10);
     const options = { sku: sku, subdomains: '0123', minZoom: 4, maxZoom: 23, attribution: new Date().getFullYear() + attribution };
     class LocatienetTileLayer extends L__namespace.TileLayer {

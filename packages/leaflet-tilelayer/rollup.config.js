@@ -6,7 +6,9 @@ const distDir = path.resolve('./dist');
 
 const sharedGlobals = {
     leaflet: "L",
+    "@locatienet/shared": "shared",
     "@locatienet/api-client": "LocatienetApiClient"
+    
 };
 
 export default defineConfig([

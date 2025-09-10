@@ -2,19 +2,20 @@
     "compilerOptions": {
         "target": "ES2020", // Modern enough for async/await
         "module": "ESNext", // Use native ESM imports/exports
-        "moduleResolution": "node", // Resolve imports like Node.js
+        "moduleResolution": "bundler", // Resolve imports like Node.js
         "outDir": "dist", // Where compiled JS files go
         "rootDir": ".", // Root folder of TS source code
         "composite": false,
-        "declaration": false, // Generate .d.ts files
+        "declaration": true, // Generate .d.ts files
         "esModuleInterop": true, // Allows import default from CommonJS modules
+        "sourceMap": true,
         "forceConsistentCasingInFileNames": true, // Windows-safe import casing
         "strict": true, // All strict type checks
         "skipLibCheck": false, // Avoid errors from 3rd party type definitions
         "resolveJsonModule": true, // Allows importing JSON (like Swagger specs)
-        "isolatedModules": true, // Required if using ESM + TS in some build tools
-        "paths": {
-           "glob": ["./node_modules/glob"]
-        }
-    }
+        "isolatedModules": true // Required if using ESM + TS in some build tools
+       
+    },
+
+
 }

@@ -117,6 +117,7 @@ export function createRollupConfig({
   sassOutput,
   addAssets = false
 }) {
+  external.push(/^@shared\/.*/);
   return {
     input,
     output: {
@@ -127,7 +128,9 @@ export function createRollupConfig({
       sourcemap: true,
       globals
     },
-    external: id => external.some(pkg => id === pkg || id.startsWith(pkg + '/')),
+    external: id => external.some(e => e instanceof RegExp ? e.test(id) : id === e || id.startsWith(e + '/')),
+
+ 
     plugins: [
       ...createPlugins({ minified }),
       ...(isSass ? [{
