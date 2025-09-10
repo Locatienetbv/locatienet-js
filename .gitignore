@@ -4,6 +4,7 @@
 /tmp
 .rollup.cache/
 *.tsbuildinfo
+*.turbo
 
 # Node
 obj/
