@@ -3,7 +3,16 @@ import { CountriesDropDown, CountriesDropDownOptions } from './CountriesDropDown
 import { Api } from '@locatienet/api-client';
 import { Dropdown, Tab }  from 'bootstrap';
 
-const idSuffix : string = "11aakc"
+
+import { generateString} from '@locatienet/shared';
+const idSuffix : string = `-${generateString(5)}`;
+
+const ids = {
+    query : `searchaddress-query${idSuffix}`,
+    countries : `searchadress-countries${idSuffix}`,
+    result: `searchadress-result${idSuffix}`,
+
+}
 
 export interface SearchAddressOptions extends ControlOptions{
   query?: string;
@@ -46,24 +55,24 @@ export class SearchAddress extends Evented {
     this._container.innerHTML = `
       <div class="address-form form-group">
         <div class="input-group d-flex m-1">
-          <input id="address-query" type="text" class="address-input form-control rounded-2 geocomplete"
+          <input id="${ids.query}" type="text" class="address-input form-control rounded-2 geocomplete"
                  autofocus autocomplete="off" tabindex="0"
                  placeholder="${this.options.placeholder || ''}" 
                  value="${this.options.query}" />
-          <div id="address-countries" class="countries dropdown btn-group input-text-group"></div>
+          <div id="${ids.countries}" class="countries dropdown btn-group input-text-group"></div>
         </div>
         
-        <div id="address-result" class="position-absolute list-group mt-1 w-100 shadow"></div>
+        <div id="${ids.result}" class="position-absolute list-group mt-1 w-100 shadow"></div>
         
       </div>
     `;
 
-    this.queryInput = this._container.querySelector('#address-query') as HTMLInputElement;
-    this.resultContainer = this._container.querySelector('#address-result') as HTMLElement;
+    this.queryInput = this._container.querySelector(`#${ids.query}`) as HTMLInputElement;
+    this.resultContainer = this._container.querySelector(`#${ids.result}`) as HTMLElement;
     
     new Tab(this.resultContainer)
 
-    this.countriesDropdownContainer = this._container.querySelector('#address-countries') as HTMLElement;
+    this.countriesDropdownContainer = this._container.querySelector(`#${ids.countries}`) as HTMLElement;
     new Dropdown(this.countriesDropdownContainer)
 
     // Initialize CountriesDropDown

@@ -62,6 +62,9 @@ importers:
       tslib:
         specifier: ^2.8.1
         version: 2.8.1
+      turbo:
+        specifier: ^2.5.6
+        version: 2.5.6
       typedoc:
         specifier: ^0.28.12
         version: 0.28.12(typescript@5.9.2)
@@ -88,14 +91,14 @@ importers:
   packages/leaflet-routing:
     dependencies:
       '@locatienet/api-client':
-        specifier: latest
-        version: 1.0.27
+        specifier: workspace:*
+        version: link:../api-client
       '@locatienet/leaflet-searchaddress':
-        specifier: latest
-        version: 1.0.28(@types/leaflet@1.9.20)(leaflet@1.9.4)
+        specifier: workspace:*
+        version: link:../leaflet-searchaddress
       '@locatienet/leaflet-tilelayer':
-        specifier: latest
-        version: 1.0.26(@types/leaflet@1.9.20)(leaflet@1.9.4)
+        specifier: workspace:*
+        version: link:../leaflet-tilelayer
       '@types/leaflet':
         specifier: ^1.9.20
         version: 1.9.20
@@ -106,8 +109,11 @@ importers:
   packages/leaflet-searchaddress:
     dependencies:
       '@locatienet/api-client':
-        specifier: ^1.0.26
-        version: 1.0.27
+        specifier: workspace:*
+        version: link:../api-client
+      '@locatienet/shared':
+        specifier: workspace:*
+        version: link:../shared
       '@types/leaflet':
         specifier: ^1.9.20
         version: 1.9.20
@@ -125,8 +131,8 @@ importers:
   packages/leaflet-tilelayer:
     dependencies:
       '@locatienet/api-client':
-        specifier: ^1.0.26
-        version: 1.0.27
+        specifier: workspace:*
+        version: link:../api-client
       '@locatienet/shared':
         specifier: workspace:*
         version: link:../shared
@@ -261,21 +267,6 @@ packages:
 
   '@jsdevtools/ono@7.1.3':
     resolution: {integrity: sha512-4JQNk+3mVzK3xh2rqd6RB4J46qUR19azEHBneZyTZM+c456qOrbbM/5xcR8huNCCcbVt7+UmizG6GuUvPvKUYg==}
-
-  '@locatienet/api-client@1.0.27':
-    resolution: {integrity: sha512-roNM8jMlBTF2pqqoG37Xq0p6DjdlAFGnQPJCRqUzLt8Rjwj6f86njRSbn4KoPf5WeuHMOA5bVWTuJasDIeLSPw==}
-
-  '@locatienet/leaflet-searchaddress@1.0.28':
-    resolution: {integrity: sha512-qTxMGfW5NLC7YDxt/KGhgXVSnAICpKNXfuZJjec7pcffQbTJUzI7zpYsvfy48nb5NhFyeKBImocfHx5P3P1kEA==}
-    peerDependencies:
-      '@types/leaflet': ^1.9.20
-      leaflet: ^1.3.1
-
-  '@locatienet/leaflet-tilelayer@1.0.26':
-    resolution: {integrity: sha512-fiNopt9YXzuW/nhjaYaNZpZEQqbTCTG6T8Yr1oDww3NHlKUlsTIfkwa2P//g96hiPujdoEnDlfinBWCJksdYPQ==}
-    peerDependencies:
-      '@types/leaflet': ^1.9.20
-      leaflet: ^1.3.1
 
   '@manypkg/find-root@1.1.0':
     resolution: {integrity: sha512-mki5uBvhHzO8kYYix/WRy2WX8S3B5wdVSc9D6KcU5lQNglP2yt58/VfLuAK49glRXChosY8ap2oJ1qgma3GUVA==}
@@ -1676,6 +1667,40 @@ packages:
   tslib@2.8.1:
     resolution: {integrity: sha512-oJFu94HQb+KVduSUQL7wnpmqnfmLsOA/nAh6b6EH0wCEoK0/mPeXU6c3wKDV83MkOuHPRHtSXKKU99IBazS/2w==}
 
+  turbo-darwin-64@2.5.6:
+    resolution: {integrity: sha512-3C1xEdo4aFwMJAPvtlPqz1Sw/+cddWIOmsalHFMrsqqydcptwBfu26WW2cDm3u93bUzMbBJ8k3zNKFqxJ9ei2A==}
+    cpu: [x64]
+    os: [darwin]
+
+  turbo-darwin-arm64@2.5.6:
+    resolution: {integrity: sha512-LyiG+rD7JhMfYwLqB6k3LZQtYn8CQQUePbpA8mF/hMLPAekXdJo1g0bUPw8RZLwQXUIU/3BU7tXENvhSGz5DPA==}
+    cpu: [arm64]
+    os: [darwin]
+
+  turbo-linux-64@2.5.6:
+    resolution: {integrity: sha512-GOcUTT0xiT/pSnHL4YD6Yr3HreUhU8pUcGqcI2ksIF9b2/r/kRHwGFcsHgpG3+vtZF/kwsP0MV8FTlTObxsYIA==}
+    cpu: [x64]
+    os: [linux]
+
+  turbo-linux-arm64@2.5.6:
+    resolution: {integrity: sha512-10Tm15bruJEA3m0V7iZcnQBpObGBcOgUcO+sY7/2vk1bweW34LMhkWi8svjV9iDF68+KJDThnYDlYE/bc7/zzQ==}
+    cpu: [arm64]
+    os: [linux]
+
+  turbo-windows-64@2.5.6:
+    resolution: {integrity: sha512-FyRsVpgaj76It0ludwZsNN40ytHN+17E4PFJyeliBEbxrGTc5BexlXVpufB7XlAaoaZVxbS6KT8RofLfDRyEPg==}
+    cpu: [x64]
+    os: [win32]
+
+  turbo-windows-arm64@2.5.6:
+    resolution: {integrity: sha512-j/tWu8cMeQ7HPpKri6jvKtyXg9K1gRyhdK4tKrrchH8GNHscPX/F71zax58yYtLRWTiK04zNzPcUJuoS0+v/+Q==}
+    cpu: [arm64]
+    os: [win32]
+
+  turbo@2.5.6:
+    resolution: {integrity: sha512-gxToHmi9oTBNB05UjUsrWf0OyN5ZXtD0apOarC1KIx232Vp3WimRNy3810QzeNSgyD5rsaIDXlxlbnOzlouo+w==}
+    hasBin: true
+
   typedoc-github-theme@0.3.1:
     resolution: {integrity: sha512-j6PmkAGmf/MGCzYjQcUH6jS9djPsNl/IoTXooxC+MoeMkBhbmPyKJlpR6Lw12BLoe2OYpYA2J1KMktUJXp/8Sw==}
     engines: {node: '>=18.0.0'}
@@ -1968,22 +1993,6 @@ snapshots:
       '@jridgewell/sourcemap-codec': 1.5.5
 
   '@jsdevtools/ono@7.1.3': {}
-
-  '@locatienet/api-client@1.0.27':
-    dependencies:
-      '@types/geojson': 7946.0.16
-
-  '@locatienet/leaflet-searchaddress@1.0.28(@types/leaflet@1.9.20)(leaflet@1.9.4)':
-    dependencies:
-      '@locatienet/api-client': 1.0.27
-      '@types/leaflet': 1.9.20
-      leaflet: 1.9.4
-
-  '@locatienet/leaflet-tilelayer@1.0.26(@types/leaflet@1.9.20)(leaflet@1.9.4)':
-    dependencies:
-      '@locatienet/api-client': 1.0.27
-      '@types/leaflet': 1.9.20
-      leaflet: 1.9.4
 
   '@manypkg/find-root@1.1.0':
     dependencies:
@@ -3281,6 +3290,33 @@ snapshots:
   tree-kill@1.2.2: {}
 
   tslib@2.8.1: {}
+
+  turbo-darwin-64@2.5.6:
+    optional: true
+
+  turbo-darwin-arm64@2.5.6:
+    optional: true
+
+  turbo-linux-64@2.5.6:
+    optional: true
+
+  turbo-linux-arm64@2.5.6:
+    optional: true
+
+  turbo-windows-64@2.5.6:
+    optional: true
+
+  turbo-windows-arm64@2.5.6:
+    optional: true
+
+  turbo@2.5.6:
+    optionalDependencies:
+      turbo-darwin-64: 2.5.6
+      turbo-darwin-arm64: 2.5.6
+      turbo-linux-64: 2.5.6
+      turbo-linux-arm64: 2.5.6
+      turbo-windows-64: 2.5.6
+      turbo-windows-arm64: 2.5.6
 
   typedoc-github-theme@0.3.1(typedoc@0.28.12(typescript@5.9.2)):
     dependencies:

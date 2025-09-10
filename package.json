@@ -8,7 +8,7 @@
     "packages/*"
   ],
   "scripts": {
-    "build": "npm run build --workspaces",
+    "build": "turbo run build",
     "prepublish:all": "git add . && git commit -m \"build for publish\" && git push",
     "release:patch": "node build/create-changeset.mjs patch && npx changeset version && npm run build && npx changeset publish",
     "release:minor": "node build/create-changeset.mjs minor && npx changeset version && npm run build && npx changeset publish",
@@ -36,6 +36,7 @@
     "sass-true": "^9.0.0",
     "tinyglobby": "^0.2.15",
     "tslib": "^2.8.1",
+    "turbo": "^2.5.6",
     "typedoc": "^0.28.12",
     "typedoc-github-theme": "^0.3.1",
     "typescript": "^5.9.2"
