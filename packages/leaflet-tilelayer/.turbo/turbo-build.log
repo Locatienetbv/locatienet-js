@@ -1,5 +1,5 @@
 
-> @locatienet/leaflet-tilelayer@1.0.26 build C:\websites\sandbox\Locatienet-js\packages\leaflet-tilelayer
+> @locatienet/leaflet-tilelayer@1.0.26 build C:\websites\Locatienet-js\packages\leaflet-tilelayer
 > npm run clean && rollup -c
 
 npm warn Unknown env config "verify-deps-before-run". This will stop working in the next major version of npm.
@@ -10,7 +10,7 @@ npm warn Unknown env config "_jsr-registry". This will stop working in the next 
 
 [36m
 [1msrc/index.ts[22m → [1mdist/leaflet-tilelayer.js[22m...[39m
-[32mcreated [1mdist/leaflet-tilelayer.js[22m in [1m3.9s[22m[39m
+[32mcreated [1mdist/leaflet-tilelayer.js[22m in [1m4s[22m[39m
 [36m
 [1msrc/index.ts[22m → [1mdist/leaflet-tilelayer.min.js[22m...[39m
-[32mcreated [1mdist/leaflet-tilelayer.min.js[22m in [1m4.7s[22m[39m
+[32mcreated [1mdist/leaflet-tilelayer.min.js[22m in [1m3.8s[22m[39m

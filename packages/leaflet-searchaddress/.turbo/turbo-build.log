@@ -1,5 +1,5 @@
 
-> @locatienet/leaflet-searchaddress@1.0.28 build C:\websites\sandbox\Locatienet-js\packages\leaflet-searchaddress
+> @locatienet/leaflet-searchaddress@1.0.28 build C:\websites\Locatienet-js\packages\leaflet-searchaddress
 > npm run clean && rollup -c
 
 npm warn Unknown env config "verify-deps-before-run". This will stop working in the next major version of npm.
@@ -13,14 +13,14 @@ npm warn Unknown env config "_jsr-registry". This will stop working in the next 
 [debug] Running sass-plugin for src/leaflet-searchaddress.scss
 WARNING: mixed-decls deprecation is obsolete. If you were previously silencing it, your code may now behave in unexpected ways.
 
-[debug] Running copy-assets-plugin for C:\websites\sandbox\Locatienet-js\packages\leaflet-searchaddress\dist
-[debug] Copying C:\websites\sandbox\Locatienet-js\assets\img → C:\websites\sandbox\Locatienet-js\packages\leaflet-searchaddress\dist\img
-[debug] Copying C:\websites\sandbox\Locatienet-js\packages\leaflet-searchaddress\assets\css → C:\websites\sandbox\Locatienet-js\packages\leaflet-searchaddress\dist\css
-[debug] Copying C:\websites\sandbox\Locatienet-js\packages\leaflet-searchaddress\assets\img → C:\websites\sandbox\Locatienet-js\packages\leaflet-searchaddress\dist\img
-[32mcreated [1mdist/leaflet-searchaddress.js[22m in [1m15s[22m[39m
+[debug] Running copy-assets-plugin for C:\websites\Locatienet-js\packages\leaflet-searchaddress\dist
+[debug] Copying C:\websites\Locatienet-js\assets\img → C:\websites\Locatienet-js\packages\leaflet-searchaddress\dist\img
+[debug] Copying C:\websites\Locatienet-js\packages\leaflet-searchaddress\assets\css → C:\websites\Locatienet-js\packages\leaflet-searchaddress\dist\css
+[debug] Copying C:\websites\Locatienet-js\packages\leaflet-searchaddress\assets\img → C:\websites\Locatienet-js\packages\leaflet-searchaddress\dist\img
+[32mcreated [1mdist/leaflet-searchaddress.js[22m in [1m12.6s[22m[39m
 [36m
 [1msrc/index.ts[22m → [1mdist/leaflet-searchaddress.min.js[22m...[39m
 [debug] Running sass-plugin for src/leaflet-searchaddress.scss
 WARNING: mixed-decls deprecation is obsolete. If you were previously silencing it, your code may now behave in unexpected ways.
 
-[32mcreated [1mdist/leaflet-searchaddress.min.js[22m in [1m13.5s[22m[39m
+[32mcreated [1mdist/leaflet-searchaddress.min.js[22m in [1m16.6s[22m[39m

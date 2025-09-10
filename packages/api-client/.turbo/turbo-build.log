@@ -1,5 +1,5 @@
 
-> @locatienet/api-client@1.0.27 build C:\websites\sandbox\Locatienet-js\packages\api-client
+> @locatienet/api-client@1.0.27 build C:\websites\Locatienet-js\packages\api-client
 > npm run clean && npm run build:types && rollup -c
 
 npm warn Unknown env config "verify-deps-before-run". This will stop working in the next major version of npm.
@@ -18,13 +18,13 @@ Compiling input files...
 Processing ./src/index.ts
 Writing ./src/index.ts -> ./dist/api-client.d.ts
 Checking generated files...
-Done in 13.05s
+Done in 7.20s
 [36m
 [1msrc/index.ts[22m → [1mdist/api-client.esm.js[22m...[39m
-[32mcreated [1mdist/api-client.esm.js[22m in [1m4.7s[22m[39m
+[32mcreated [1mdist/api-client.esm.js[22m in [1m2.4s[22m[39m
 [36m
 [1msrc/index.ts[22m → [1mdist/api-client.js[22m...[39m
-[32mcreated [1mdist/api-client.js[22m in [1m2.6s[22m[39m
+[32mcreated [1mdist/api-client.js[22m in [1m1.4s[22m[39m
 [36m
 [1msrc/index.ts[22m → [1mdist/api-client.min.js[22m...[39m
-[32mcreated [1mdist/api-client.min.js[22m in [1m2.4s[22m[39m
+[32mcreated [1mdist/api-client.min.js[22m in [1m1.6s[22m[39m
