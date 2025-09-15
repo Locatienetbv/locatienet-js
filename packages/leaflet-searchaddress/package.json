@@ -1,6 +1,6 @@
 {
     "name": "@locatienet/leaflet-searchaddress",
-    "version": "1.0.28",
+    "version": "1.0.29",
     "description": "A plugin address searchbar for Leaflet",
     "author": "Remco Zut",
     "license": "MIT",

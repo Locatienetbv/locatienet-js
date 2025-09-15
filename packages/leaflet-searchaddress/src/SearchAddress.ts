@@ -52,6 +52,7 @@ export class SearchAddress extends Evented {
 
 
     // Build search bar
+    this._container.style.zIndex = 'revert';
     this._container.innerHTML = `
       <div class="address-form form-group">
         <div class="input-group d-flex m-1">
@@ -62,7 +63,7 @@ export class SearchAddress extends Evented {
           <div id="${ids.countries}" class="countries dropdown btn-group input-text-group"></div>
         </div>
         
-        <div id="${ids.result}" class="position-absolute list-group mt-1 w-100 shadow"></div>
+        <div id="${ids.result}" class="position-absolute list-group mt-1 w-100 shadow" style="z-index:9999"></div>
         
       </div>
     `;

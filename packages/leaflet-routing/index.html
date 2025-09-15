@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <title>Locatienet lrm Example</title>
+    <title>Locatienet Routing Example</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" />
     <link rel="stylesheet" href="http://www.liedman.net/leaflet-routing-machine/dist/leaflet-routing-machine.css" />
     <style>
@@ -37,25 +37,27 @@
 
     <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
     <script src="http://www.liedman.net/leaflet-routing-machine/dist/leaflet-routing-machine.js"></script>
+
+
+	<script>
+		window.LN_API_KEY = 'aa101d91-bc54-4c68-b0ea-12dbfe116bf6' /* replace with your apikey */
+	</script>
+	<script src="https://unpkg.com/@locatienet/leaflet-tilelayer/dist/leaflet-tilelayer.js"></script>
     <script src="./dist/leaflet-routing.js"></script>
 
+	
     <script>
-		var apikey = 'aa101d91-bc54-4c68-b0ea-12dbfe116bf6' //'your-locatienet-apikey';
-
 		var map = L.map('map');
 
-		L.tileLayer(`https://tile{s}.locatienet.com/{z}/{x}/{y}.png?apikey=${apikey}`, {
-			attribution: '&copy; <a href="https://locatienet.com">Locatienet</a>',
-			subdomains: '0123'
-		}).addTo(map);
+		L.locatienetTileLayer().addTo(map);
 
 		var routingControl = L.Routing.control({
 			waypoints: [
 				L.latLng(52.74, 4.94),
 				L.latLng(52.6792, 4.949)
 			],
-			geocoder: L.Control.Geocoder.locatienet(apikey),
-			router: L.Routing.locatienet(apikey),
+			geocoder: L.Control.Geocoder.locatienet(),
+			router: L.Routing.locatienet(),
 			routeWhileDragging: true
 		}).addTo(map);
 

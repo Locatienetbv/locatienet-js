@@ -1,5 +1,14 @@
 # Change Log
 
+## 1.0.29
+
+### Patch Changes
+
+- Automated version bump
+- Updated dependencies
+  - @locatienet/api-client@1.0.28
+  - @locatienet/shared@1.0.1
+
 ## 1.0.28
 
 ### Patch Changes

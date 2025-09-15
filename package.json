@@ -3,18 +3,18 @@
   "version": "1.0.5",
   "author": "Remco Zut",
   "homepage": "https://github.com/locatienetbv/locatienet-js/#readme",
-  "private": false,
+  "private": true,
   "workspaces": [
     "packages/*"
   ],
   "scripts": {
     "build": "turbo run build",
-    "prepublish:all": "git add . && git commit -m \"build for publish\" && git push",
     "release:patch": "node build/create-changeset.mjs patch && npx changeset version && npm run build && npx changeset publish",
     "release:minor": "node build/create-changeset.mjs minor && npx changeset version && npm run build && npx changeset publish",
     "release:major": "node build/create-changeset.mjs major && npx changeset version && npm run build && npx changeset publish",
     "release:api-client": "node build/create-changeset.mjs patch \"Automated patch release\" @locatienet/api-client && npx changeset version && npm --workspace @locatienet/api-client run build && npm --workspace @locatienet/api-client publish --access public",
     "release:searchaddress": "node build/create-changeset.mjs patch \"Automated patch release\" @locatienet/leaflet-searchaddress && npx changeset version && npm --workspace @locatienet/leaflet-searchaddress run build && npm --workspace @locatienet/leaflet-searchaddress publish --access public",
+    "prepublish:all": "git add . && git commit -m \"build for publish\" && git push",
     "docs": "call ./scripts/publish-locatienet-api-docs.bat && call ./scripts/publish-locatienet-js-docs.bat"
   },
   "devDependencies": {

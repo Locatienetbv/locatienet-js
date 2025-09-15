@@ -29,8 +29,8 @@
 			urlParameters: {}
 		},
 
-		initialize: function(apikey, options) {
-			this._apikey = apikey;
+		initialize: function(options) {
+			this._apikey = window.LN_API_KEY;
 			L.Util.setOptions(this, options);
 		},
 

@@ -1,16 +1,16 @@
 
-> @locatienet/leaflet-routing@1.0.26 build C:\websites\Locatienet-js\packages\leaflet-routing
+> @locatienet/leaflet-routing@1.0.27 build C:\websites\Locatienet-js\packages\leaflet-routing
 > npm run clean && rollup -c
 
 npm warn Unknown env config "verify-deps-before-run". This will stop working in the next major version of npm.
 npm warn Unknown env config "_jsr-registry". This will stop working in the next major version of npm.
 
-> @locatienet/leaflet-routing@1.0.26 clean
+> @locatienet/leaflet-routing@1.0.27 clean
 > rimraf dist
 
 [36m
 [1msrc/index.ts[22m → [1mdist/leaflet-routing.js[22m...[39m
-[32mcreated [1mdist/leaflet-routing.js[22m in [1m1.9s[22m[39m
+[32mcreated [1mdist/leaflet-routing.js[22m in [1m2.9s[22m[39m
 [36m
 [1msrc/index.ts[22m → [1mdist/leaflet-routing.min.js[22m...[39m
-[32mcreated [1mdist/leaflet-routing.min.js[22m in [1m2.1s[22m[39m
+[32mcreated [1mdist/leaflet-routing.min.js[22m in [1m3.5s[22m[39m

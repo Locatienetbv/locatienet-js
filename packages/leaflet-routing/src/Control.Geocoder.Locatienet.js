@@ -22,8 +22,8 @@
 			service_url: 'https://services.locatienet.com/rs/v1/Locate/'
 		},
 
-		initialize: function(apikey) {
-			this._apikey = apikey;
+		initialize: function() {
+			this._apikey = window.LN_API_KEY;
 		},
 
 		geocode: function (query, cb, context) {
@@ -31,12 +31,13 @@
 				text: query,
 				options: {
 					language: 'nl',
-					numresults: 5
+					numresults: 5,
+					minimalResultScore: 0 // fetch all possible results
 				}
 			}
 
 
-			this._post(this.options.service_url + 'searchByText', body, function(data) {
+			this._post(this.options.service_url + 'searchByText', body, function(err, data) {
 				var results = [],
 				loc,
 				latLng,
@@ -45,23 +46,21 @@
 					for (var i = 0; i <= data.length - 1; i++) {
 						loc = data[i];
 						latLng = L.latLng(loc.coordinate.y, loc.coordinate.x);
-						if(loc.hasOwnProperty('bbox'))
-							{
-								latLngBounds = L.latLngBounds(L.latLng(loc.bbox.slice(0, 2).reverse()), L.latLng(loc.bbox.slice(2, 4).reverse()));
-							}
-							else
-							{
-								latLngBounds = L.latLngBounds(latLng, latLng);
-							}
-							results[i] = {
-								name: loc.description,
-								bbox: latLngBounds,
-								center: latLng
-							};
-						}
-					}
 
-					cb.call(context, results);
+						if(loc.hasOwnProperty('bbox')) {
+								latLngBounds = L.latLngBounds(L.latLng(loc.bbox.slice(0, 2).reverse()), L.latLng(loc.bbox.slice(2, 4).reverse()));
+						} else {
+								latLngBounds = L.latLngBounds(latLng, latLng);
+						}
+						results[i] = {
+							name: loc.description,
+							bbox: latLngBounds,
+							center: latLng
+						};
+					}
+				}
+
+				cb.call(context, results);
 			});
 		},
 

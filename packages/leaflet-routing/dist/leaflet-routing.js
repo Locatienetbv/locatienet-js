@@ -1,5 +1,5 @@
 /*!
- * Locatienet @locatienet/leaflet-routing v1.0.26 (https://github.com/Locatienetbv/locatienet-js/tree/master/packages/leaflet-routing#readme)
+ * Locatienet @locatienet/leaflet-routing v1.0.27 (https://github.com/Locatienetbv/locatienet-js/tree/master/packages/leaflet-routing#readme)
  * Copyright 2021-2025 Remco Zut
  * Licensed under MIT (https://github.com/locatienetbv/locatienet-js/LICENSE)
  */
@@ -317,428 +317,7 @@
 					};
 				})();
 
-				L.Control.Geocoder.Nominatim = L.Class.extend({
-					options: {
-						serviceUrl: '//nominatim.openstreetmap.org/',
-						geocodingQueryParams: {},
-						reverseQueryParams: {},
-						htmlTemplate: function(r) {
-							var a = r.address,
-								parts = [];
-							if (a.road || a.building) {
-								parts.push('{building} {road} {house_number}');
-							}
 
-							if (a.city || a.town || a.village) {
-								parts.push('<span class="' + (parts.length > 0 ? 'leaflet-control-geocoder-address-detail' : '') +
-									'">{postcode} {city}{town}{village}</span>');
-							}
-
-							if (a.state || a.country) {
-								parts.push('<span class="' + (parts.length > 0 ? 'leaflet-control-geocoder-address-context' : '') +
-									'">{state} {country}</span>');
-							}
-
-							return L.Control.Geocoder.template(parts.join('<br/>'), a, true);
-						}
-					},
-
-					initialize: function(options) {
-						L.Util.setOptions(this, options);
-					},
-
-					geocode: function(query, cb, context) {
-						L.Control.Geocoder.jsonp(this.options.serviceUrl + 'search/', L.extend({
-							q: query,
-							limit: 5,
-							format: 'json',
-							addressdetails: 1
-						}, this.options.geocodingQueryParams),
-						function(data) {
-							var results = [];
-							for (var i = data.length - 1; i >= 0; i--) {
-								var bbox = data[i].boundingbox;
-								for (var j = 0; j < 4; j++) bbox[j] = parseFloat(bbox[j]);
-								results[i] = {
-									icon: data[i].icon,
-									name: data[i].display_name,
-									html: this.options.htmlTemplate ?
-										this.options.htmlTemplate(data[i])
-										: undefined,
-									bbox: L.latLngBounds([bbox[0], bbox[2]], [bbox[1], bbox[3]]),
-									center: L.latLng(data[i].lat, data[i].lon),
-									properties: data[i]
-								};
-							}
-							cb.call(context, results);
-						}, this, 'json_callback');
-					},
-
-					reverse: function(location, scale, cb, context) {
-						L.Control.Geocoder.jsonp(this.options.serviceUrl + 'reverse/', L.extend({
-							lat: location.lat,
-							lon: location.lng,
-							zoom: Math.round(Math.log(scale / 256) / Math.log(2)),
-							addressdetails: 1,
-							format: 'json'
-						}, this.options.reverseQueryParams), function(data) {
-							var result = [],
-							    loc;
-
-							if (data && data.lat && data.lon) {
-								loc = L.latLng(data.lat, data.lon);
-								result.push({
-									name: data.display_name,
-									html: this.options.htmlTemplate ?
-										this.options.htmlTemplate(data)
-										: undefined,
-									center: loc,
-									bounds: L.latLngBounds(loc, loc),
-									properties: data
-								});
-							}
-
-							cb.call(context, result);
-						}, this, 'json_callback');
-					}
-				});
-
-				L.Control.Geocoder.nominatim = function(options) {
-					return new L.Control.Geocoder.Nominatim(options);
-				};
-
-				L.Control.Geocoder.Bing = L.Class.extend({
-					initialize: function(key) {
-						this.key = key;
-					},
-
-					geocode : function (query, cb, context) {
-						L.Control.Geocoder.jsonp('//dev.virtualearth.net/REST/v1/Locations', {
-							query: query,
-							key : this.key
-						}, function(data) {
-							var results = [];
-							for (var i = data.resourceSets[0].resources.length - 1; i >= 0; i--) {
-								var resource = data.resourceSets[0].resources[i],
-									bbox = resource.bbox;
-								results[i] = {
-									name: resource.name,
-									bbox: L.latLngBounds([bbox[0], bbox[1]], [bbox[2], bbox[3]]),
-									center: L.latLng(resource.point.coordinates)
-								};
-							}
-							cb.call(context, results);
-						}, this, 'jsonp');
-					},
-
-					reverse: function(location, scale, cb, context) {
-						L.Control.Geocoder.jsonp('//dev.virtualearth.net/REST/v1/Locations/' + location.lat + ',' + location.lng, {
-							key : this.key
-						}, function(data) {
-							var results = [];
-							for (var i = data.resourceSets[0].resources.length - 1; i >= 0; i--) {
-								var resource = data.resourceSets[0].resources[i],
-									bbox = resource.bbox;
-								results[i] = {
-									name: resource.name,
-									bbox: L.latLngBounds([bbox[0], bbox[1]], [bbox[2], bbox[3]]),
-									center: L.latLng(resource.point.coordinates)
-								};
-							}
-							cb.call(context, results);
-						}, this, 'jsonp');
-					}
-				});
-
-				L.Control.Geocoder.bing = function(key) {
-					return new L.Control.Geocoder.Bing(key);
-				};
-
-				L.Control.Geocoder.RaveGeo = L.Class.extend({
-					options: {
-						querySuffix: '',
-						deepSearch: true,
-						wordBased: false
-					},
-
-					jsonp: function(params, callback, context) {
-						var callbackId = '_l_geocoder_' + (L.Control.Geocoder.callbackId++),
-							paramParts = [];
-						params.prepend = callbackId + '(';
-						params.append = ')';
-						for (var p in params) {
-							paramParts.push(p + '=' + escape(params[p]));
-						}
-
-						window[callbackId] = L.Util.bind(callback, context);
-						var script = document.createElement('script');
-						script.type = 'text/javascript';
-						script.src = this._serviceUrl + '?' + paramParts.join('&');
-						script.id = callbackId;
-						document.getElementsByTagName('head')[0].appendChild(script);
-					},
-
-					initialize: function(serviceUrl, scheme, options) {
-						L.Util.setOptions(this, options);
-
-						this._serviceUrl = serviceUrl;
-						this._scheme = scheme;
-					},
-
-					geocode: function(query, cb, context) {
-						L.Control.Geocoder.jsonp(this._serviceUrl, {
-							address: query + this.options.querySuffix,
-							scheme: this._scheme,
-							outputFormat: 'jsonp',
-							deepSearch: this.options.deepSearch,
-							wordBased: this.options.wordBased
-						}, function(data) {
-							var results = [];
-							for (var i = data.length - 1; i >= 0; i--) {
-								var r = data[i],
-									c = L.latLng(r.y, r.x);
-								results[i] = {
-									name: r.address,
-									bbox: L.latLngBounds([c]),
-									center: c
-								};
-							}
-							cb.call(context, results);
-						}, this);
-					}
-				});
-
-				L.Control.Geocoder.raveGeo = function(serviceUrl, scheme, options) {
-					return new L.Control.Geocoder.RaveGeo(serviceUrl, scheme, options);
-				};
-
-				L.Control.Geocoder.MapQuest = L.Class.extend({
-					initialize: function(key) {
-						// MapQuest seems to provide URI encoded API keys,
-						// so to avoid encoding them twice, we decode them here
-						this._key = decodeURIComponent(key);
-					},
-
-					_formatName: function() {
-						var r = [],
-							i;
-						for (i = 0; i < arguments.length; i++) {
-							if (arguments[i]) {
-								r.push(arguments[i]);
-							}
-						}
-
-						return r.join(', ');
-					},
-
-					geocode: function(query, cb, context) {
-						L.Control.Geocoder.jsonp('//www.mapquestapi.com/geocoding/v1/address', {
-							key: this._key,
-							location: query,
-							limit: 5,
-							outFormat: 'json'
-						}, function(data) {
-							var results = [],
-								loc,
-								latLng;
-							if (data.results && data.results[0].locations) {
-								for (var i = data.results[0].locations.length - 1; i >= 0; i--) {
-									loc = data.results[0].locations[i];
-									latLng = L.latLng(loc.latLng);
-									results[i] = {
-										name: this._formatName(loc.street, loc.adminArea4, loc.adminArea3, loc.adminArea1),
-										bbox: L.latLngBounds(latLng, latLng),
-										center: latLng
-									};
-								}
-							}
-
-							cb.call(context, results);
-						}, this);
-					},
-
-					reverse: function(location, scale, cb, context) {
-						L.Control.Geocoder.jsonp('//www.mapquestapi.com/geocoding/v1/reverse', {
-							key: this._key,
-							location: location.lat + ',' + location.lng,
-							outputFormat: 'json'
-						}, function(data) {
-							var results = [],
-								loc,
-								latLng;
-							if (data.results && data.results[0].locations) {
-								for (var i = data.results[0].locations.length - 1; i >= 0; i--) {
-									loc = data.results[0].locations[i];
-									latLng = L.latLng(loc.latLng);
-									results[i] = {
-										name: this._formatName(loc.street, loc.adminArea4, loc.adminArea3, loc.adminArea1),
-										bbox: L.latLngBounds(latLng, latLng),
-										center: latLng
-									};
-								}
-							}
-
-							cb.call(context, results);
-						}, this);
-					}
-				});
-
-				L.Control.Geocoder.mapQuest = function(key) {
-					return new L.Control.Geocoder.MapQuest(key);
-				};
-
-				L.Control.Geocoder.Mapbox = L.Class.extend({
-					options: {
-						service_url: 'https://api.tiles.mapbox.com/v4/geocode/mapbox.places-v1/'
-					},
-
-					initialize: function(access_token) {
-						this._access_token = access_token;
-					},
-
-					geocode: function(query, cb, context) {
-						L.Control.Geocoder.getJSON(this.options.service_url + encodeURIComponent(query) + '.json', {
-							access_token: this._access_token,
-						}, function(data) {
-							var results = [],
-							loc,
-							latLng,
-							latLngBounds;
-							if (data.features && data.features.length) {
-								for (var i = 0; i <= data.features.length - 1; i++) {
-									loc = data.features[i];
-									latLng = L.latLng(loc.center.reverse());
-									if(loc.hasOwnProperty('bbox'))
-										{
-											latLngBounds = L.latLngBounds(L.latLng(loc.bbox.slice(0, 2).reverse()), L.latLng(loc.bbox.slice(2, 4).reverse()));
-										}
-										else
-										{
-											latLngBounds = L.latLngBounds(latLng, latLng);
-										}
-										results[i] = {
-											name: loc.place_name,
-											bbox: latLngBounds,
-											center: latLng
-										};
-									}
-								}
-
-								cb.call(context, results);
-						});
-					},
-
-					reverse: function(location, scale, cb, context) {
-						L.Control.Geocoder.getJSON(this.options.service_url + encodeURIComponent(location.lng) + ',' + encodeURIComponent(location.lat) + '.json', {
-							access_token: this._access_token,
-						}, function(data) {
-							var results = [],
-							loc,
-							latLng,
-							latLngBounds;
-							if (data.features && data.features.length) {
-								for (var i = 0; i <= data.features.length - 1; i++) {
-									loc = data.features[i];
-									latLng = L.latLng(loc.center.reverse());
-									if(loc.hasOwnProperty('bbox'))
-									{
-										latLngBounds = L.latLngBounds(L.latLng(loc.bbox.slice(0, 2).reverse()), L.latLng(loc.bbox.slice(2, 4).reverse()));
-									}
-									else
-									{
-										latLngBounds = L.latLngBounds(latLng, latLng);
-									}
-									results[i] = {
-										name: loc.place_name,
-										bbox: latLngBounds,
-										center: latLng
-									};
-								}
-							}
-
-							cb.call(context, results);
-						});
-					}
-				});
-
-				L.Control.Geocoder.mapbox = function(access_token) {
-						return new L.Control.Geocoder.Mapbox(access_token);
-				};
-
-				L.Control.Geocoder.Google = L.Class.extend({
-					options: {
-						service_url: 'https://maps.googleapis.com/maps/api/geocode/json'
-					},
-
-					initialize: function(key) {
-							this._key = key;
-					},
-
-					geocode: function(query, cb, context) {
-						var params = {
-							address: query,
-						};
-						if(this._key && this._key.length)
-						{
-							params['key'] = this._key;
-						}
-
-						L.Control.Geocoder.getJSON(this.options.service_url, params, function(data) {
-								var results = [],
-										loc,
-										latLng,
-										latLngBounds;
-								if (data.results && data.results.length) {
-									for (var i = 0; i <= data.results.length - 1; i++) {
-										loc = data.results[i];
-										latLng = L.latLng(loc.geometry.location);
-										latLngBounds = L.latLngBounds(L.latLng(loc.geometry.viewport.northeast), L.latLng(loc.geometry.viewport.southwest));
-										results[i] = {
-												name: loc.formatted_address,
-												bbox: latLngBounds,
-												center: latLng
-										};
-									}
-								}
-
-								cb.call(context, results);
-						});
-					},
-
-					reverse: function(location, scale, cb, context) {
-						var params = {
-							latlng: encodeURIComponent(location.lat) + ',' + encodeURIComponent(location.lng)
-						};
-						if(this._key && this._key.length)
-						{
-							params['key'] = this._key;
-						}
-						L.Control.Geocoder.getJSON(this.options.service_url, params, function(data) {
-							var results = [],
-									loc,
-									latLng,
-									latLngBounds;
-							if (data.results && data.results.length) {
-								for (var i = 0; i <= data.results.length - 1; i++) {
-									loc = data.results[i];
-									latLng = L.latLng(loc.geometry.location);
-									latLngBounds = L.latLngBounds(L.latLng(loc.geometry.viewport.northeast), L.latLng(loc.geometry.viewport.southwest));
-									results[i] = {
-										name: loc.formatted_address,
-										bbox: latLngBounds,
-										center: latLng
-									};
-								}
-							}
-
-							cb.call(context, results);
-						});
-					}
-				});
-
-				L.Control.Geocoder.google = function(key) {
-					return new L.Control.Geocoder.Google(key);
-				};
 				return L.Control.Geocoder;
 			})); 
 		} (Control_Geocoder));
@@ -770,8 +349,8 @@
 						service_url: 'https://services.locatienet.com/rs/v1/Locate/'
 					},
 
-					initialize: function(apikey) {
-						this._apikey = apikey;
+					initialize: function() {
+						this._apikey = window.LN_API_KEY;
 					},
 
 					geocode: function (query, cb, context) {
@@ -779,12 +358,13 @@
 							text: query,
 							options: {
 								language: 'nl',
-								numresults: 5
+								numresults: 5,
+								minimalResultScore: 0 // fetch all possible results
 							}
 						};
 
 
-						this._post(this.options.service_url + 'searchByText', body, function(data) {
+						this._post(this.options.service_url + 'searchByText', body, function(err, data) {
 							var results = [],
 							loc,
 							latLng,
@@ -793,23 +373,21 @@
 								for (var i = 0; i <= data.length - 1; i++) {
 									loc = data[i];
 									latLng = L.latLng(loc.coordinate.y, loc.coordinate.x);
-									if(loc.hasOwnProperty('bbox'))
-										{
-											latLngBounds = L.latLngBounds(L.latLng(loc.bbox.slice(0, 2).reverse()), L.latLng(loc.bbox.slice(2, 4).reverse()));
-										}
-										else
-										{
-											latLngBounds = L.latLngBounds(latLng, latLng);
-										}
-										results[i] = {
-											name: loc.description,
-											bbox: latLngBounds,
-											center: latLng
-										};
-									}
-								}
 
-								cb.call(context, results);
+									if(loc.hasOwnProperty('bbox')) {
+											latLngBounds = L.latLngBounds(L.latLng(loc.bbox.slice(0, 2).reverse()), L.latLng(loc.bbox.slice(2, 4).reverse()));
+									} else {
+											latLngBounds = L.latLngBounds(latLng, latLng);
+									}
+									results[i] = {
+										name: loc.description,
+										bbox: latLngBounds,
+										center: latLng
+									};
+								}
+							}
+
+							cb.call(context, results);
 						});
 					},
 
@@ -904,8 +482,8 @@
 						urlParameters: {}
 					},
 
-					initialize: function(apikey, options) {
-						this._apikey = apikey;
+					initialize: function(options) {
+						this._apikey = window.LN_API_KEY;
 						L.Util.setOptions(this, options);
 					},
 

@@ -1,5 +1,15 @@
 # Change Log
 
+## 1.0.27
+
+### Patch Changes
+
+- Automated version bump
+- Updated dependencies
+  - @locatienet/api-client@1.0.28
+  - @locatienet/leaflet-searchaddress@1.0.29
+  - @locatienet/leaflet-tilelayer@1.0.27
+
 ## 1.0.26
 
 ### Patch Changes

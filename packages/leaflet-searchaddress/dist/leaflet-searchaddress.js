@@ -1,5 +1,5 @@
 /*!
- * Locatienet @locatienet/leaflet-searchaddress v1.0.28 (https://github.com/Locatienetbv/locatienet-js/tree/master/packages/leaflet-searchaddress#readme)
+ * Locatienet @locatienet/leaflet-searchaddress v1.0.29 (https://github.com/Locatienetbv/locatienet-js/tree/master/packages/leaflet-searchaddress#readme)
  * Copyright 2021-2025 Remco Zut
  * Licensed under MIT (https://github.com/locatienetbv/locatienet-js/LICENSE)
  */
@@ -31,7 +31,7 @@
     var apiClient_min$1 = {exports: {}};
 
     /*!
-     * Locatienet @locatienet/api-client v1.0.27 (https://github.com/Locatienetbv/locatienet-js/tree/master/packages/api-client#readme)
+     * Locatienet @locatienet/api-client v1.0.28 (https://github.com/Locatienetbv/locatienet-js/tree/master/packages/api-client#readme)
      * Copyright 2021-2025 Remco Zut
      * Licensed under MIT (https://github.com/locatienetbv/locatienet-js/LICENSE)
      */
@@ -6450,6 +6450,7 @@
                 L.DomEvent.disableScrollPropagation(this._container);
             }
             // Build search bar
+            this._container.style.zIndex = 'revert';
             this._container.innerHTML = `
       <div class="address-form form-group">
         <div class="input-group d-flex m-1">
@@ -6460,7 +6461,7 @@
           <div id="${ids.countries}" class="countries dropdown btn-group input-text-group"></div>
         </div>
         
-        <div id="${ids.result}" class="position-absolute list-group mt-1 w-100 shadow"></div>
+        <div id="${ids.result}" class="position-absolute list-group mt-1 w-100 shadow" style="z-index:9999"></div>
         
       </div>
     `;
