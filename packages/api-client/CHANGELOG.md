@@ -1,5 +1,23 @@
 # Change Log
 
+## 1.0.31
+
+### Patch Changes
+
+- Automated version bump
+
+## 1.0.30
+
+### Patch Changes
+
+- Automated version bump
+
+## 1.0.29
+
+### Patch Changes
+
+- Automated version bump
+
 ## 1.0.28
 
 ### Patch Changes

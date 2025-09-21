@@ -1,5 +1,5 @@
 /*!
- * Locatienet @locatienet/leaflet-searchaddress v1.0.29 (https://github.com/Locatienetbv/locatienet-js/tree/master/packages/leaflet-searchaddress#readme)
+ * Locatienet @locatienet/leaflet-searchaddress v1.0.32 (https://github.com/Locatienetbv/locatienet-js/tree/master/packages/leaflet-searchaddress#readme)
  * Copyright 2021-2025 Remco Zut
  * Licensed under MIT (https://github.com/locatienetbv/locatienet-js/LICENSE)
  */
@@ -31,7 +31,7 @@
     var apiClient_min$1 = {exports: {}};
 
     /*!
-     * Locatienet @locatienet/api-client v1.0.28 (https://github.com/Locatienetbv/locatienet-js/tree/master/packages/api-client#readme)
+     * Locatienet @locatienet/api-client v1.0.31 (https://github.com/Locatienetbv/locatienet-js/tree/master/packages/api-client#readme)
      * Copyright 2021-2025 Remco Zut
      * Licensed under MIT (https://github.com/locatienetbv/locatienet-js/LICENSE)
      */
@@ -6685,6 +6685,70 @@
         }
     }
 
+    class Address {
+        constructor(address) {
+            if (typeof address === "string") {
+                // from encoded string
+                this.initFromString(address);
+            }
+            else if (address && address.type === "Feature" && address.geometry?.type === "Point") {
+                // from GeoJSON feature
+                this.initFromFeature(address);
+            }
+        }
+        initFromString(addressStr) {
+            this.address = addressStr;
+            const arr = decodeURIComponent(addressStr).split("_");
+            this.latLng = new L__namespace.LatLng(parseFloat(arr[1] || "0"), parseFloat(arr[0] || "0"));
+            this.street = arr[2] || "";
+            this.houseNr = arr[3] || "";
+            this.postcode = arr[4] || "";
+            this.city = arr[5] || "";
+            this.province = arr[6] || "";
+            this.country = arr[7] || "NL";
+        }
+        initFromFeature(feature) {
+            const coords = feature.geometry.coordinates;
+            this.latLng = new L__namespace.LatLng(coords[1], coords[0]);
+            const props = feature.properties || {};
+            this.street = props.street || "";
+            this.houseNr = props.houseNr || "";
+            this.postcode = props.postcode || "";
+            this.city = props.city || "";
+            this.province = props.province || "";
+            this.country = props.country || "NL";
+            // build a string representation
+            this.address = this.getAddress();
+        }
+        getDescr() {
+            return ((this.street + " " + this.houseNr).trim() +
+                (this.street ? ", " : "") +
+                (this.postcode ? this.postcode + " " : "") +
+                this.city);
+        }
+        getAddress() {
+            if (this.isValid() && this.latLng) {
+                return [
+                    this.latLng.lng,
+                    this.latLng.lat,
+                    this.street,
+                    this.houseNr,
+                    this.postcode,
+                    this.city,
+                    this.province,
+                    this.country
+                ].join("_");
+            }
+            return "";
+        }
+        isValid() {
+            return !!this.latLng && this.latLng.lng !== 0 && this.latLng.lat !== 0;
+        }
+    }
+
+    if (typeof window != "undefined") {
+        window.Address = Address;
+    }
     // UMD globals (only if Leaflet is loaded)
     if (typeof window !== "undefined" && window.L) {
         const L = window.L;
@@ -6699,6 +6763,7 @@
         };
     }
 
+    exports.Address = Address;
     exports.SearchAddress = SearchAddress;
     exports.SearchAddressControl = SearchAddressControl;
     exports.SearchPositionControl = SearchPositionControl;

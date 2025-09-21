@@ -1,13 +1,13 @@
 /*!
- * Locatienet @locatienet/leaflet-tilelayer v1.0.27 (https://github.com/Locatienetbv/locatienet-js/tree/master/packages/leaflet-tilelayer#readme)
+ * Locatienet @locatienet/leaflet-tilelayer v1.0.30 (https://github.com/Locatienetbv/locatienet-js/tree/master/packages/leaflet-tilelayer#readme)
  * Copyright 2021-2025 Remco Zut
  * Licensed under MIT (https://github.com/locatienetbv/locatienet-js/LICENSE)
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('leaflet')) :
-    typeof define === 'function' && define.amd ? define(['exports', 'leaflet'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.L = global.L || {}, global.L.LocatienetTilelayer = {}), global.L));
-})(this, (function (exports, L) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(require('leaflet')) :
+    typeof define === 'function' && define.amd ? define(['leaflet'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory(global.L));
+})(this, (function (L) { 'use strict';
 
     function _interopNamespaceDefault(e) {
         var n = Object.create(null);
@@ -31,7 +31,7 @@
     var apiClient_min$1 = {exports: {}};
 
     /*!
-     * Locatienet @locatienet/api-client v1.0.28 (https://github.com/Locatienetbv/locatienet-js/tree/master/packages/api-client#readme)
+     * Locatienet @locatienet/api-client v1.0.31 (https://github.com/Locatienetbv/locatienet-js/tree/master/packages/api-client#readme)
      * Copyright 2021-2025 Remco Zut
      * Licensed under MIT (https://github.com/locatienetbv/locatienet-js/LICENSE)
      */
@@ -99,6 +99,7 @@
             return tile;
         }
     }
+
     // Attach globally for UMD/browser usage
     if (typeof window !== "undefined" && window.L) {
         const L = window.L;
@@ -107,8 +108,6 @@
             return new LocatienetTileLayer();
         };
     }
-
-    exports.LocatienetTileLayer = LocatienetTileLayer;
 
 }));
 //# sourceMappingURL=leaflet-tilelayer.js.map
